@@ -7,37 +7,37 @@ export default function Services() {
       title: "Life Insurance",
       description: "Comprehensive life insurance policies to provide financial security for your loved ones when they need it most.",
       features: ["Term Life Insurance", "Whole Life Insurance", "Universal Life Insurance", "Customized Coverage"],
-      gradient: "from-blue-600 to-blue-700",
-      bgGradient: "from-blue-50 to-blue-100"
+      gradient: "from-primary-600 to-primary-700",
+      bgGradient: "from-primary-50 to-primary-100"
     },
     {
       icon: <Heart className="text-white" size={48} />,
       title: "Funeral Expense Insurance", 
       description: "Dedicated coverage for funeral and burial expenses, ensuring your family isn't burdened with unexpected costs.",
       features: ["Up to $25,000 Coverage", "No Medical Exam Options", "Guaranteed Acceptance", "Immediate Benefits"],
-      gradient: "from-red-500 to-pink-600",
-      bgGradient: "from-red-50 to-pink-50"
+      gradient: "from-primary-500 to-primary-600",
+      bgGradient: "from-primary-50 to-primary-100"
     },
     {
       icon: <Umbrella className="text-white" size={48} />,
       title: "Critical Illness Coverage",
       description: "Protection against major health events that could impact your family's financial stability.",
       features: ["Cancer Coverage", "Heart Attack Protection", "Stroke Benefits", "Return of Premium Options"],
-      gradient: "from-green-600 to-emerald-700",
-      bgGradient: "from-green-50 to-emerald-50"
+      gradient: "from-success-600 to-success-700",
+      bgGradient: "from-success-50 to-success-100"
     },
     {
       icon: <FileText className="text-white" size={48} />,
       title: "Insurance Review & Planning",
       description: "Comprehensive review of your existing coverage and personalized planning for your family's unique needs.",
       features: ["Free Policy Review", "Needs Assessment", "Coverage Gap Analysis", "Ongoing Support"],
-      gradient: "from-purple-600 to-indigo-700",
-      bgGradient: "from-purple-50 to-indigo-50"
+      gradient: "from-accent-600 to-accent-700",
+      bgGradient: "from-accent-50 to-accent-100"
     }
   ]
 
   return (
-    <section id="services" className="section-padding bg-gradient-to-b from-gray-50 to-white">
+    <section id="services" className="section-padding warm-gradient-bg">
       <div className="container-custom">
         <div className="text-center mb-20">
           <div className="inline-flex items-center space-x-2 bg-primary-100 text-primary-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
@@ -49,7 +49,7 @@ export default function Services() {
             <span className="gradient-text block">Solutions</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            As an LLQP certified agent with Whitehorse Financial, I provide personalized 
+            As an LLQP certified agent with HashLife Insurers, I provide personalized 
             insurance solutions tailored to protect what matters most to you and your family.
           </p>
         </div>

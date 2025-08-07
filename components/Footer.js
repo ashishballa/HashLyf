@@ -4,7 +4,7 @@ export default function Footer() {
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-xl font-bold mb-4">Whitehorse Financial</h3>
+            <h3 className="text-xl font-bold mb-4">HashLife Insurers</h3>
             <p className="text-gray-300 mb-4">
               LLQP certified life insurance agent providing comprehensive 
               protection solutions across Ontario.
@@ -45,7 +45,7 @@ export default function Footer() {
         </div>
         
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; 2025 Whitehorse Financial. All rights reserved. LLQP Licensed Agent.</p>
+          <p>&copy; 2025 HashLife Insurers. All rights reserved. LLQP Licensed Agent.</p>
           <p className="mt-2 text-sm">
             This website is for informational purposes. Insurance products subject to underwriting approval.
           </p>

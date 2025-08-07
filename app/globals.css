@@ -14,23 +14,35 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 border-0;
+    @apply bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-primary-500/25 transform hover:scale-105 border-0;
   }
   
   .btn-secondary {
-    @apply bg-white hover:bg-primary-50 text-primary-600 border-2 border-primary-600 hover:border-primary-700 font-semibold py-4 px-8 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105;
+    @apply bg-white hover:bg-primary-50 text-primary-600 border-2 border-primary-500 hover:border-primary-600 font-semibold py-4 px-8 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105;
+  }
+  
+  .btn-accent {
+    @apply bg-gradient-to-r from-accent-500 to-accent-600 hover:from-accent-600 hover:to-accent-700 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-accent-500/25 transform hover:scale-105 border-0;
   }
   
   .card-hover {
-    @apply transition-all duration-300 hover:shadow-2xl hover:shadow-primary-600/20 hover:-translate-y-2;
+    @apply transition-all duration-300 hover:shadow-2xl hover:shadow-primary-500/20 hover:-translate-y-2;
   }
   
   .gradient-text {
-    @apply bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary-500 to-accent-500 bg-clip-text text-transparent;
+  }
+  
+  .gradient-bg {
+    @apply bg-gradient-to-br from-primary-50 via-white to-accent-50;
+  }
+  
+  .warm-gradient-bg {
+    @apply bg-gradient-to-br from-warm-50 via-primary-50 to-accent-50;
   }
   
   .glass-effect {
-    @apply backdrop-blur-md bg-white/90 border border-white/20;
+    @apply backdrop-blur-md bg-white/90 border border-primary-100/50 shadow-lg;
   }
   
   .section-padding {
@@ -39,5 +51,13 @@
   
   .container-custom {
     @apply container mx-auto px-6 lg:px-8;
+  }
+  
+  .text-gradient-primary {
+    @apply bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent;
+  }
+  
+  .text-gradient-accent {
+    @apply bg-gradient-to-r from-accent-600 to-accent-700 bg-clip-text text-transparent;
   }
 }

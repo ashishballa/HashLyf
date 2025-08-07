@@ -10,7 +10,7 @@ export default function Testimonials() {
       insuranceType: "Life Insurance",
       amount: "$100,000",
       avatar: "S",
-      bgColor: "from-blue-500 to-blue-600"
+      bgColor: "from-primary-500 to-primary-600"
     },
     {
       name: "David L.", 
@@ -20,7 +20,7 @@ export default function Testimonials() {
       insuranceType: "Funeral Expense",
       amount: "$15,000",
       avatar: "D",
-      bgColor: "from-green-500 to-green-600"
+      bgColor: "from-success-500 to-success-600"
     },
     {
       name: "Jennifer K.",
@@ -30,7 +30,7 @@ export default function Testimonials() {
       insuranceType: "Critical Illness",
       amount: "$50,000",
       avatar: "J",
-      bgColor: "from-purple-500 to-purple-600"
+      bgColor: "from-accent-500 to-accent-600"
     }
   ]
 
@@ -38,7 +38,7 @@ export default function Testimonials() {
     <section id="testimonials" className="section-padding bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-20 right-10 w-64 h-64 bg-gradient-to-br from-accent-100 to-primary-100 rounded-full blur-3xl opacity-30"></div>
-      <div className="absolute bottom-20 left-10 w-72 h-72 bg-gradient-to-br from-primary-100 to-purple-100 rounded-full blur-3xl opacity-30"></div>
+      <div className="absolute bottom-20 left-10 w-72 h-72 bg-gradient-to-br from-primary-100 to-accent-100 rounded-full blur-3xl opacity-30"></div>
       
       <div className="container-custom relative z-10">
         <div className="text-center mb-20">
@@ -140,7 +140,7 @@ export default function Testimonials() {
             <div className="text-gray-600 font-medium">Coverage Secured</div>
           </div>
           <div className="group">
-            <div className="text-4xl font-bold text-purple-600 mb-2 group-hover:scale-110 transition-transform">24h</div>
+            <div className="text-4xl font-bold text-accent-600 mb-2 group-hover:scale-110 transition-transform">24h</div>
             <div className="text-gray-600 font-medium">Response Time</div>
           </div>
           <div className="group">

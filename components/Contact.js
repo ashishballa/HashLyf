@@ -62,40 +62,40 @@ export default function Contact() {
       title: "Phone",
       value: "(905) 922-6136",
       description: "Call for immediate assistance",
-      gradient: "from-blue-500 to-blue-600",
-      bgColor: "bg-blue-50"
+      gradient: "from-primary-500 to-primary-600",
+      bgColor: "bg-primary-50"
     },
     {
       icon: <Mail className="text-white" size={24} />,
       title: "Email",
       value: "harsha.whf@gmail.com",
       description: "We respond within 24 hours",
-      gradient: "from-purple-500 to-purple-600",
-      bgColor: "bg-purple-50"
+      gradient: "from-accent-500 to-accent-600",
+      bgColor: "bg-accent-50"
     },
     {
       icon: <MapPin className="text-white" size={24} />,
       title: "Service Area",
       value: "Ontario, Canada",
       description: "Licensed across the province",
-      gradient: "from-green-500 to-green-600",
-      bgColor: "bg-green-50"
+      gradient: "from-success-500 to-success-600",
+      bgColor: "bg-success-50"
     },
     {
       icon: <Clock className="text-white" size={24} />,
       title: "Business Hours",
       value: "Mon-Fri: 9:00 AM - 6:00 PM",
       description: "Evening appointments available",
-      gradient: "from-orange-500 to-orange-600",
-      bgColor: "bg-orange-50"
+      gradient: "from-warm-600 to-warm-700",
+      bgColor: "bg-warm-50"
     }
   ]
 
   return (
-    <section id="contact" className="section-padding bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+    <section id="contact" className="section-padding warm-gradient-bg relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-20 left-10 w-64 h-64 bg-gradient-to-br from-primary-200 to-accent-200 rounded-full blur-3xl opacity-20"></div>
-      <div className="absolute bottom-20 right-10 w-72 h-72 bg-gradient-to-br from-accent-200 to-purple-200 rounded-full blur-3xl opacity-20"></div>
+      <div className="absolute bottom-20 right-10 w-72 h-72 bg-gradient-to-br from-accent-200 to-primary-200 rounded-full blur-3xl opacity-20"></div>
       
       <div className="container-custom relative z-10">
         <div className="text-center mb-20">
@@ -113,15 +113,15 @@ export default function Contact() {
           </p>
           <div className="flex justify-center items-center space-x-8 text-sm text-gray-600">
             <div className="flex items-center space-x-2">
-              <CheckCircle className="text-green-600" size={16} />
+              <CheckCircle className="text-success-600" size={16} />
               <span>100% Free</span>
             </div>
             <div className="flex items-center space-x-2">
-              <CheckCircle className="text-green-600" size={16} />
+              <CheckCircle className="text-success-600" size={16} />
               <span>No Pressure</span>
             </div>
             <div className="flex items-center space-x-2">
-              <CheckCircle className="text-green-600" size={16} />
+              <CheckCircle className="text-success-600" size={16} />
               <span>24hr Response</span>
             </div>
           </div>
@@ -281,12 +281,12 @@ export default function Contact() {
                 </button>
 
                 {submitStatus === 'success' && (
-                  <div className="p-6 bg-green-50 border border-green-200 rounded-2xl">
+                  <div className="p-6 bg-success-50 border border-success-200 rounded-2xl">
                     <div className="flex items-center space-x-3">
-                      <CheckCircle className="text-green-600" size={24} />
+                      <CheckCircle className="text-success-600" size={24} />
                       <div>
-                        <p className="text-green-800 font-semibold">Message sent successfully!</p>
-                        <p className="text-green-700 text-sm">I'll contact you within 24 hours with your personalized quote.</p>
+                        <p className="text-success-800 font-semibold">Message sent successfully!</p>
+                        <p className="text-success-700 text-sm">I'll contact you within 24 hours with your personalized quote.</p>
                       </div>
                     </div>
                   </div>

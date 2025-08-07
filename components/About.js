@@ -2,10 +2,10 @@ import { Award, MapPin, Phone, Users, Target, Clock, CheckCircle2, Star, Trendin
 
 export default function About() {
   const achievements = [
-    { icon: <Award className="text-yellow-600" size={24} />, label: "LLQP Certified", value: "Professional" },
-    { icon: <MapPin className="text-blue-600" size={24} />, label: "Licensed Across", value: "Ontario" },
-    { icon: <Users className="text-green-600" size={24} />, label: "Families", value: "Protected" },
-    { icon: <TrendingUp className="text-purple-600" size={24} />, label: "Success", value: "Rate" }
+    { icon: <Award className="text-accent-600" size={24} />, label: "LLQP Certified", value: "Professional" },
+    { icon: <MapPin className="text-primary-600" size={24} />, label: "Licensed Across", value: "Ontario" },
+    { icon: <Users className="text-success-600" size={24} />, label: "Families", value: "Protected" },
+    { icon: <TrendingUp className="text-primary-700" size={24} />, label: "Success", value: "Rate" }
   ]
 
   const whyChooseMe = [
@@ -20,12 +20,12 @@ export default function About() {
       description: "Every family is unique. I take time to understand your specific needs, goals, and budget to create tailored solutions."
     },
     {
-      icon: <Clock className="text-blue-600" size={32} />,
+      icon: <Clock className="text-primary-600" size={32} />,
       title: "Ongoing Support",
       description: "Your insurance needs evolve. I provide continuous support, policy reviews, and adjustments as your life changes."
     },
     {
-      icon: <CheckCircle2 className="text-green-600" size={32} />,
+      icon: <CheckCircle2 className="text-success-600" size={32} />,
       title: "Proven Results",
       description: "Recent success stories like securing comprehensive funeral expense coverage demonstrate my commitment to client success."
     }
@@ -35,7 +35,7 @@ export default function About() {
     <section id="about" className="section-padding bg-white relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-20 right-10 w-72 h-72 bg-gradient-to-br from-primary-100 to-accent-100 rounded-full blur-3xl opacity-30"></div>
-      <div className="absolute bottom-20 left-10 w-56 h-56 bg-gradient-to-br from-accent-100 to-purple-100 rounded-full blur-3xl opacity-30"></div>
+      <div className="absolute bottom-20 left-10 w-56 h-56 bg-gradient-to-br from-accent-100 to-primary-100 rounded-full blur-3xl opacity-30"></div>
       
       <div className="container-custom relative z-10">
         <div className="grid lg:grid-cols-2 gap-20 items-center">
@@ -53,7 +53,7 @@ export default function About() {
             
             <div className="space-y-6">
               <p className="text-xl text-gray-600 leading-relaxed">
-                As an LLQP certified life insurance agent with Whitehorse Financial, 
+                As an LLQP certified life insurance agent with HashLife Insurers, 
                 I bring years of dedicated experience helping families across Ontario secure 
                 their financial future through comprehensive insurance solutions.
               </p>
