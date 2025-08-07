@@ -139,7 +139,7 @@ export default function Header({ openModal }) {
               "heading-medium transition-colors duration-300",
               isScrolled ? "text-neutral-800" : "text-neutral-900"
             )}>
-              <span className="text-gradient-coral">Hash</span>Life Insurance
+              <span className="text-coral-600 font-bold">Hash</span>Life Insurance
             </div>
           </motion.div>
 
