@@ -8,11 +8,16 @@ import { cn } from '../lib/utils'
 
 export default function ContactModal({ isOpen, onClose, autoOpen = false }) {
   const [formData, setFormData] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     phone: '',
-    insuranceType: '',
-    message: ''
+    gender: '',
+    smoker: '',
+    birthYear: '',
+    birthMonth: '',
+    birthDay: '',
+    coverageLevel: ''
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState('')
@@ -42,19 +47,24 @@ export default function ContactModal({ isOpen, onClose, autoOpen = false }) {
       if (!isSupabaseEnabled()) {
         console.warn('Supabase not configured, form submission skipped')
         setSubmitStatus('success') // Still show success to user
-        setFormData({ name: '', email: '', phone: '', insuranceType: '', message: '' })
+        setFormData({ firstName: '', lastName: '', email: '', phone: '', gender: '', smoker: '', birthYear: '', birthMonth: '', birthDay: '', coverageLevel: '' })
         return
       }
 
       const { data, error } = await supabase
-        .from('contact_submissions')
+        .from('quote_requests')
         .insert([
           {
-            name: formData.name,
+            first_name: formData.firstName,
+            last_name: formData.lastName,
             email: formData.email,
             phone: formData.phone,
-            insurance_type: formData.insuranceType,
-            message: formData.message,
+            gender: formData.gender,
+            smoker: formData.smoker === 'yes',
+            birth_year: parseInt(formData.birthYear) || null,
+            birth_month: parseInt(formData.birthMonth) || null,
+            birth_day: parseInt(formData.birthDay) || null,
+            coverage_level: formData.coverageLevel,
             created_at: new Date().toISOString()
           }
         ])
@@ -62,7 +72,7 @@ export default function ContactModal({ isOpen, onClose, autoOpen = false }) {
       if (error) throw error
 
       setSubmitStatus('success')
-      setFormData({ name: '', email: '', phone: '', insuranceType: '', message: '' })
+      setFormData({ firstName: '', lastName: '', email: '', phone: '', gender: '', smoker: '', birthYear: '', birthMonth: '', birthDay: '', coverageLevel: '' })
       
       // Close modal after successful submission
       setTimeout(() => {
@@ -86,7 +96,7 @@ export default function ContactModal({ isOpen, onClose, autoOpen = false }) {
   }
 
   const handleClose = () => {
-    setFormData({ name: '', email: '', phone: '', insuranceType: '', message: '' })
+    setFormData({ firstName: '', lastName: '', email: '', phone: '', gender: '', smoker: '', birthYear: '', birthMonth: '', birthDay: '', coverageLevel: '' })
     setSubmitStatus('')
     setFocusedField('')
     onClose()
@@ -101,6 +111,7 @@ export default function ContactModal({ isOpen, onClose, autoOpen = false }) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
+          style={{ pointerEvents: 'auto' }}
         >
           {/* Backdrop */}
           <motion.div
@@ -113,11 +124,13 @@ export default function ContactModal({ isOpen, onClose, autoOpen = false }) {
           
           {/* Modal Content */}
           <motion.div
-            className="relative bg-white rounded-3xl shadow-premium max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+            className="relative bg-white rounded-3xl shadow-premium max-w-2xl w-full max-h-[90vh] overflow-y-auto modal-content"
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            style={{ pointerEvents: 'auto' }}
+            onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
             <div className="relative p-8 pb-0">
@@ -171,33 +184,261 @@ export default function ContactModal({ isOpen, onClose, autoOpen = false }) {
 
             {/* Form */}
             <div className="px-8 pb-8">
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6" style={{ pointerEvents: 'auto' }}>
+                {/* Gender Selection */}
+                <motion.div
+                  whileFocus={{ scale: 1.02 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <label className="block text-sm font-semibold text-neutral-700 mb-3">
+                    Are you male or female? *
+                  </label>
+                  <div className="grid grid-cols-2 gap-4">
+                    <motion.label 
+                      className={cn(
+                        "flex items-center justify-center p-4 rounded-xl border-2 cursor-pointer transition-all",
+                        formData.gender === 'male' 
+                          ? "border-coral-500 bg-coral-50 text-coral-700" 
+                          : "border-neutral-200 hover:border-coral-300"
+                      )}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      style={{ pointerEvents: 'auto' }}
+                    >
+                      <input
+                        type="radio"
+                        name="gender"
+                        value="male"
+                        checked={formData.gender === 'male'}
+                        onChange={handleChange}
+                        className="sr-only"
+                        required
+                        style={{ pointerEvents: 'auto' }}
+                      />
+                      <span className="font-medium">Male</span>
+                    </motion.label>
+                    <motion.label 
+                      className={cn(
+                        "flex items-center justify-center p-4 rounded-xl border-2 cursor-pointer transition-all",
+                        formData.gender === 'female' 
+                          ? "border-coral-500 bg-coral-50 text-coral-700" 
+                          : "border-neutral-200 hover:border-coral-300"
+                      )}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      style={{ pointerEvents: 'auto' }}
+                    >
+                      <input
+                        type="radio"
+                        name="gender"
+                        value="female"
+                        checked={formData.gender === 'female'}
+                        onChange={handleChange}
+                        className="sr-only"
+                        required
+                        style={{ pointerEvents: 'auto' }}
+                      />
+                      <span className="font-medium">Female</span>
+                    </motion.label>
+                  </div>
+                </motion.div>
+
+                {/* Smoking Status */}
+                <motion.div
+                  whileFocus={{ scale: 1.02 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <label className="block text-sm font-semibold text-neutral-700 mb-3">
+                    Are you a smoker? *
+                  </label>
+                  <div className="grid grid-cols-2 gap-4">
+                    <motion.label 
+                      className={cn(
+                        "flex items-center justify-center p-4 rounded-xl border-2 cursor-pointer transition-all",
+                        formData.smoker === 'no' 
+                          ? "border-coral-500 bg-coral-50 text-coral-700" 
+                          : "border-neutral-200 hover:border-coral-300"
+                      )}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      style={{ pointerEvents: 'auto' }}
+                    >
+                      <input
+                        type="radio"
+                        name="smoker"
+                        value="no"
+                        checked={formData.smoker === 'no'}
+                        onChange={handleChange}
+                        className="sr-only"
+                        required
+                        style={{ pointerEvents: 'auto' }}
+                      />
+                      <span className="font-medium">No</span>
+                    </motion.label>
+                    <motion.label 
+                      className={cn(
+                        "flex items-center justify-center p-4 rounded-xl border-2 cursor-pointer transition-all",
+                        formData.smoker === 'yes' 
+                          ? "border-coral-500 bg-coral-50 text-coral-700" 
+                          : "border-neutral-200 hover:border-coral-300"
+                      )}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      style={{ pointerEvents: 'auto' }}
+                    >
+                      <input
+                        type="radio"
+                        name="smoker"
+                        value="yes"
+                        checked={formData.smoker === 'yes'}
+                        onChange={handleChange}
+                        className="sr-only"
+                        required
+                        style={{ pointerEvents: 'auto' }}
+                      />
+                      <span className="font-medium">Yes</span>
+                    </motion.label>
+                  </div>
+                </motion.div>
+
+                {/* Date of Birth */}
+                <motion.div
+                  whileFocus={{ scale: 1.02 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <label className="block text-sm font-semibold text-neutral-700 mb-3">
+                    What is your date of birth? *
+                  </label>
+                  <div className="grid grid-cols-3 gap-4">
+                    <div>
+                      <label className="block text-xs text-neutral-500 mb-2">Year of birth</label>
+                      <input
+                        type="number"
+                        name="birthYear"
+                        value={formData.birthYear}
+                        onChange={handleChange}
+                        onFocus={() => setFocusedField('birthYear')}
+                        onBlur={() => setFocusedField('')}
+                        required
+                        min="1920"
+                        max={new Date().getFullYear()}
+                        className="input-premium"
+                        placeholder="YYYY"
+                        style={{ pointerEvents: 'auto', userSelect: 'auto' }}
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs text-neutral-500 mb-2">Month of birth</label>
+                      <select
+                        name="birthMonth"
+                        value={formData.birthMonth}
+                        onChange={handleChange}
+                        onFocus={() => setFocusedField('birthMonth')}
+                        onBlur={() => setFocusedField('')}
+                        required
+                        className="input-premium"
+                        style={{ pointerEvents: 'auto', userSelect: 'auto' }}
+                      >
+                        <option value="">Month</option>
+                        <option value="1">January</option>
+                        <option value="2">February</option>
+                        <option value="3">March</option>
+                        <option value="4">April</option>
+                        <option value="5">May</option>
+                        <option value="6">June</option>
+                        <option value="7">July</option>
+                        <option value="8">August</option>
+                        <option value="9">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-xs text-neutral-500 mb-2">Day of birth</label>
+                      <input
+                        type="number"
+                        name="birthDay"
+                        value={formData.birthDay}
+                        onChange={handleChange}
+                        onFocus={() => setFocusedField('birthDay')}
+                        onBlur={() => setFocusedField('')}
+                        required
+                        min="1"
+                        max="31"
+                        className="input-premium"
+                        placeholder="DD"
+                        style={{ pointerEvents: 'auto', userSelect: 'auto' }}
+                      />
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Coverage Level */}
+                <motion.div
+                  whileFocus={{ scale: 1.02 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <label className="block text-sm font-semibold text-neutral-700 mb-3">
+                    What level of coverage would you like? *
+                  </label>
+                  {!formData.birthYear ? (
+                    <p className="text-sm text-neutral-500 italic">
+                      Please enter your date of birth before choosing a coverage level.
+                    </p>
+                  ) : (
+                    <select
+                      name="coverageLevel"
+                      value={formData.coverageLevel}
+                      onChange={handleChange}
+                      onFocus={() => setFocusedField('coverageLevel')}
+                      onBlur={() => setFocusedField('')}
+                      required
+                      className="input-premium"
+                      style={{ pointerEvents: 'auto', userSelect: 'auto' }}
+                    >
+                      <option value="">Select coverage amount</option>
+                      <option value="100000">$100,000</option>
+                      <option value="250000">$250,000</option>
+                      <option value="500000">$500,000</option>
+                      <option value="750000">$750,000</option>
+                      <option value="1000000">$1,000,000</option>
+                      <option value="1500000">$1,500,000</option>
+                      <option value="2000000">$2,000,000</option>
+                      <option value="other">Other amount</option>
+                    </select>
+                  )}
+                </motion.div>
+
+                {/* Name Fields */}
                 <div className="grid md:grid-cols-2 gap-6">
                   <motion.div
                     whileFocus={{ scale: 1.02 }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
                     <label className="block text-sm font-semibold text-neutral-700 mb-3">
-                      Full Name *
+                      First name *
                     </label>
                     <div className="relative group">
                       <User 
                         className={cn(
                           "absolute left-4 top-1/2 transform -translate-y-1/2 transition-colors",
-                          focusedField === 'name' ? "text-coral-500" : "text-neutral-400"
+                          focusedField === 'firstName' ? "text-coral-500" : "text-neutral-400"
                         )} 
                         size={18} 
                       />
                       <input
                         type="text"
-                        name="name"
-                        value={formData.name}
+                        name="firstName"
+                        value={formData.firstName}
                         onChange={handleChange}
-                        onFocus={() => setFocusedField('name')}
+                        onFocus={() => setFocusedField('firstName')}
                         onBlur={() => setFocusedField('')}
                         required
                         className="input-premium pl-12"
-                        placeholder="Enter your full name"
+                        placeholder="Enter your first name"
+                        style={{ pointerEvents: 'auto', userSelect: 'auto' }}
+                        autoComplete="given-name"
                       />
                     </div>
                   </motion.div>
@@ -207,7 +448,72 @@ export default function ContactModal({ isOpen, onClose, autoOpen = false }) {
                     transition={{ type: "spring", stiffness: 300 }}
                   >
                     <label className="block text-sm font-semibold text-neutral-700 mb-3">
-                      Email Address *
+                      Last name *
+                    </label>
+                    <div className="relative group">
+                      <User 
+                        className={cn(
+                          "absolute left-4 top-1/2 transform -translate-y-1/2 transition-colors",
+                          focusedField === 'lastName' ? "text-coral-500" : "text-neutral-400"
+                        )} 
+                        size={18} 
+                      />
+                      <input
+                        type="text"
+                        name="lastName"
+                        value={formData.lastName}
+                        onChange={handleChange}
+                        onFocus={() => setFocusedField('lastName')}
+                        onBlur={() => setFocusedField('')}
+                        required
+                        className="input-premium pl-12"
+                        placeholder="Enter your last name"
+                        style={{ pointerEvents: 'auto', userSelect: 'auto' }}
+                        autoComplete="family-name"
+                      />
+                    </div>
+                  </motion.div>
+                </div>
+
+                {/* Contact Information */}
+                <div className="grid md:grid-cols-2 gap-6">
+                  <motion.div
+                    whileFocus={{ scale: 1.02 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <label className="block text-sm font-semibold text-neutral-700 mb-3">
+                      Contact number *
+                    </label>
+                    <div className="relative group">
+                      <Phone 
+                        className={cn(
+                          "absolute left-4 top-1/2 transform -translate-y-1/2 transition-colors",
+                          focusedField === 'phone' ? "text-coral-500" : "text-neutral-400"
+                        )} 
+                        size={18} 
+                      />
+                      <input
+                        type="tel"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        onFocus={() => setFocusedField('phone')}
+                        onBlur={() => setFocusedField('')}
+                        required
+                        className="input-premium pl-12"
+                        placeholder="Enter your contact number"
+                        style={{ pointerEvents: 'auto', userSelect: 'auto' }}
+                        autoComplete="tel"
+                      />
+                    </div>
+                  </motion.div>
+                  
+                  <motion.div
+                    whileFocus={{ scale: 1.02 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <label className="block text-sm font-semibold text-neutral-700 mb-3">
+                      Email address *
                     </label>
                     <div className="relative group">
                       <Mail 
@@ -227,101 +533,12 @@ export default function ContactModal({ isOpen, onClose, autoOpen = false }) {
                         required
                         className="input-premium pl-12"
                         placeholder="Enter your email address"
+                        style={{ pointerEvents: 'auto', userSelect: 'auto' }}
+                        autoComplete="email"
                       />
                     </div>
                   </motion.div>
                 </div>
-                
-                <div className="grid md:grid-cols-2 gap-6">
-                  <motion.div
-                    whileFocus={{ scale: 1.02 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <label className="block text-sm font-semibold text-neutral-700 mb-3">
-                      Phone Number
-                    </label>
-                    <div className="relative group">
-                      <Phone 
-                        className={cn(
-                          "absolute left-4 top-1/2 transform -translate-y-1/2 transition-colors",
-                          focusedField === 'phone' ? "text-coral-500" : "text-neutral-400"
-                        )} 
-                        size={18} 
-                      />
-                      <input
-                        type="tel"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        onFocus={() => setFocusedField('phone')}
-                        onBlur={() => setFocusedField('')}
-                        className="input-premium pl-12"
-                        placeholder="Enter your phone number"
-                      />
-                    </div>
-                  </motion.div>
-                  
-                  <motion.div
-                    whileFocus={{ scale: 1.02 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <label className="block text-sm font-semibold text-neutral-700 mb-3">
-                      Insurance Type
-                    </label>
-                    <div className="relative group">
-                      <Shield 
-                        className={cn(
-                          "absolute left-4 top-1/2 transform -translate-y-1/2 transition-colors",
-                          focusedField === 'insuranceType' ? "text-coral-500" : "text-neutral-400"
-                        )} 
-                        size={18} 
-                      />
-                      <select
-                        name="insuranceType"
-                        value={formData.insuranceType}
-                        onChange={handleChange}
-                        onFocus={() => setFocusedField('insuranceType')}
-                        onBlur={() => setFocusedField('')}
-                        className="input-premium pl-12 appearance-none cursor-pointer"
-                      >
-                        <option value="">Select Insurance Type</option>
-                        <option value="life">Life Insurance</option>
-                        <option value="funeral">Funeral Expense Insurance</option>
-                        <option value="critical">Critical Illness Coverage</option>
-                        <option value="review">Insurance Review</option>
-                        <option value="other">Other</option>
-                      </select>
-                    </div>
-                  </motion.div>
-                </div>
-
-                <motion.div
-                  whileFocus={{ scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <label className="block text-sm font-semibold text-neutral-700 mb-3">
-                    Message
-                  </label>
-                  <div className="relative group">
-                    <MessageCircle 
-                      className={cn(
-                        "absolute left-4 top-6 transition-colors",
-                        focusedField === 'message' ? "text-coral-500" : "text-neutral-400"
-                      )} 
-                      size={18} 
-                    />
-                    <textarea
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      onFocus={() => setFocusedField('message')}
-                      onBlur={() => setFocusedField('')}
-                      rows="4"
-                      className="textarea-premium pl-12"
-                      placeholder="Tell me about your insurance needs, coverage amount, budget, or any questions you have..."
-                    ></textarea>
-                  </div>
-                </motion.div>
 
                 <motion.button
                   type="submit"
@@ -338,7 +555,7 @@ export default function ContactModal({ isOpen, onClose, autoOpen = false }) {
                     animate={isSubmitting ? { x: [0, 5, -5, 0] } : {}}
                     transition={{ duration: 1, repeat: isSubmitting ? Infinity : 0 }}
                   >
-                    <span>{isSubmitting ? 'Sending Message...' : 'Send Message & Get Free Quote'}</span>
+                    <span>{isSubmitting ? 'Submitting Quote Request...' : 'Get My Free Quote'}</span>
                     <Send 
                       className={cn(
                         "transition-transform",
@@ -376,8 +593,8 @@ export default function ContactModal({ isOpen, onClose, autoOpen = false }) {
                           <CheckCircle className="text-success-600" size={24} />
                         </motion.div>
                         <div>
-                          <p className="text-success-800 font-semibold">Message sent successfully!</p>
-                          <p className="text-success-700 text-sm">I'll contact you within 24 hours with your personalized quote.</p>
+                          <p className="text-success-800 font-semibold">Quote request submitted!</p>
+                          <p className="text-success-700 text-sm">A licensed advisor will contact you within 24 hours with your personalized quote.</p>
                         </div>
                       </div>
                     </motion.div>

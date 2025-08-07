@@ -48,6 +48,7 @@
 
 @layer base {
   * {
+    box-sizing: border-box;
     @apply border-border;
   }
   
@@ -62,6 +63,8 @@
     font-feature-settings: "rlig" 1, "calt" 1;
     overflow-x: hidden;
     max-width: 100vw;
+    margin: 0;
+    padding: 0;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -274,11 +277,207 @@
     @apply w-full px-4 py-3 bg-white/90 backdrop-blur-sm border border-neutral-200
            rounded-xl shadow-elegant focus:outline-none focus:ring-2 focus:ring-coral-500
            focus:border-transparent transition-all duration-300;
+    pointer-events: auto !important;
+    user-select: auto !important;
+    -webkit-user-select: auto !important;
+    -moz-user-select: auto !important;
+    -ms-user-select: auto !important;
   }
   
   .textarea-premium {
     @apply w-full px-4 py-3 bg-white/90 backdrop-blur-sm border border-neutral-200
            rounded-xl shadow-elegant focus:outline-none focus:ring-2 focus:ring-coral-500
            focus:border-transparent transition-all duration-300 resize-none;
+    pointer-events: auto !important;
+    user-select: auto !important;
+    -webkit-user-select: auto !important;
+    -moz-user-select: auto !important;
+    -ms-user-select: auto !important;
+  }
+
+  /* Modal form interaction fix */
+  .modal-content {
+    pointer-events: auto !important;
+  }
+
+  .modal-content * {
+    pointer-events: auto !important;
+    user-select: auto !important;
+  }
+
+  .modal-content input,
+  .modal-content select,
+  .modal-content textarea {
+    pointer-events: auto !important;
+    user-select: text !important;
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
+  }
+
+  .modal-content input[type="radio"] {
+    pointer-events: auto !important;
+    user-select: auto !important;
+    -webkit-user-select: auto !important;
+    -moz-user-select: auto !important;
+    -ms-user-select: auto !important;
+  }
+
+  .modal-content label {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+  }
+
+  .modal-content select option {
+    pointer-events: auto !important;
+    user-select: auto !important;
+  }
+
+  /* Fix for Contact form and FAQ interactions */
+  .contact-form {
+    pointer-events: auto !important;
+  }
+
+  .contact-form * {
+    pointer-events: auto !important;
+    user-select: auto !important;
+  }
+
+  .contact-form input,
+  .contact-form select,
+  .contact-form textarea,
+  .contact-form button,
+  .contact-form label {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    user-select: auto !important;
+  }
+
+  .contact-form input[type="radio"] {
+    pointer-events: auto !important;
+    user-select: auto !important;
+    -webkit-user-select: auto !important;
+    -moz-user-select: auto !important;
+    -ms-user-select: auto !important;
+  }
+
+  /* FAQ fixes */
+  .faq-item {
+    pointer-events: auto !important;
+  }
+
+  .faq-item * {
+    pointer-events: auto !important;
+    user-select: auto !important;
+  }
+
+  .faq-item button,
+  .faq-item [onclick],
+  .faq-item .cursor-pointer {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+  }
+
+  /* General form and interactive element fixes */
+  input:not([type="range"]),
+  select,
+  textarea,
+  button,
+  label,
+  .cursor-pointer {
+    pointer-events: auto !important;
+    user-select: auto !important;
+  }
+
+  input[type="radio"],
+  input[type="checkbox"] {
+    pointer-events: auto !important;
+    user-select: auto !important;
+    -webkit-user-select: auto !important;
+    -moz-user-select: auto !important;
+    -ms-user-select: auto !important;
+  }
+
+  /* Force all interactive elements to work - but only for interactive elements */
+
+  /* Override any framer-motion or animation interference */
+  .motion-div,
+  [data-framer-motion],
+  [style*="pointer-events"] {
+    pointer-events: auto !important;
+  }
+
+  /* Specific overrides for all interactive elements */
+  button,
+  input,
+  select,
+  textarea,
+  label,
+  a,
+  .cursor-pointer,
+  [onclick],
+  [role="button"] {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    user-select: auto !important;
+    -webkit-user-select: auto !important;
+    -moz-user-select: auto !important;
+    -ms-user-select: auto !important;
+  }
+
+  /* FAQ specific overrides */
+  #faq *,
+  .faq-item *,
+  [id*="faq"] * {
+    pointer-events: auto !important;
+    user-select: auto !important;
+  }
+
+  /* Contact form specific overrides */
+  #contact *,
+  .contact-form *,
+  [id*="contact"] * {
+    pointer-events: auto !important;
+    user-select: auto !important;
+  }
+
+  /* Radio button labels and containers */
+  label:has(input[type="radio"]),
+  .radio-container,
+  [class*="radio"] {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+  }
+
+  /* Aggressive form interaction fixes */
+  form * {
+    pointer-events: auto !important;
+  }
+
+  .contact-form,
+  .contact-form * {
+    pointer-events: auto !important;
+    user-select: auto !important;
+  }
+
+  /* Disable any CSS that might block interactions */
+  #contact form,
+  #contact form *,
+  .contact-form,
+  .contact-form * {
+    pointer-events: auto !important;
+    user-select: auto !important;
+    -webkit-user-select: auto !important;
+    -moz-user-select: auto !important;
+    -ms-user-select: auto !important;
+  }
+
+  /* Specific input element fixes */
+  input[type="radio"] + span,
+  label[for]:not([for=""]),
+  label:has(input) {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    user-select: auto !important;
   }
 }

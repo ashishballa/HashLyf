@@ -77,7 +77,6 @@ export default function FAQ() {
       } else {
         newExpanded.add(id)
       }
-      console.log('Toggling FAQ ID:', id, 'New state:', Array.from(newExpanded))
       return newExpanded
     })
   }
@@ -184,6 +183,7 @@ export default function FAQ() {
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ y: -5, scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
+                style={{ pointerEvents: 'auto', cursor: 'pointer' }}
               >
                 <p className="text-neutral-800 font-medium group-hover:text-coral-600 transition-colors">
                   {faq.question}
@@ -216,6 +216,7 @@ export default function FAQ() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="input-premium pl-12 text-base"
+              style={{ pointerEvents: 'auto', userSelect: 'auto' }}
             />
           </div>
 
@@ -273,6 +274,7 @@ export default function FAQ() {
                       setSelectedSubcategory('all')
                     }}
                     className="input-premium cursor-pointer appearance-none"
+                    style={{ pointerEvents: 'auto', userSelect: 'auto' }}
                   >
                     <option value="all">All Categories</option>
                     {Object.keys(categories).map((category) => (
@@ -288,6 +290,7 @@ export default function FAQ() {
                     onChange={(e) => setSelectedSubcategory(e.target.value)}
                     className="input-premium cursor-pointer appearance-none disabled:opacity-50"
                     disabled={selectedCategory === 'all'}
+                    style={{ pointerEvents: 'auto', userSelect: 'auto' }}
                   >
                     <option value="all">All Subcategories</option>
                     {subcategories.map((subcategory) => (
@@ -302,6 +305,7 @@ export default function FAQ() {
                     value={selectedAgeGroup}
                     onChange={(e) => setSelectedAgeGroup(e.target.value)}
                     className="input-premium cursor-pointer appearance-none"
+                    style={{ pointerEvents: 'auto', userSelect: 'auto' }}
                   >
                     <option value="all">All Ages</option>
                     <option value="18-30">Young Adults (18-30)</option>
@@ -331,22 +335,20 @@ export default function FAQ() {
         {/* Premium FAQ Items */}
         <div className="space-y-4">
           {filteredFAQs.length > 0 ? (
-            filteredFAQs.map((faq, index) => {
-              if (faq.id === 189) {
-                console.log('Rendering FAQ 189:', faq)
-              }
-              return (
+            filteredFAQs.map((faq, index) => (
               <motion.div
                 key={faq.id}
-                className="card-premium overflow-hidden hover:shadow-glow-coral transition-all duration-300"
+                className="card-premium overflow-hidden hover:shadow-glow-coral transition-all duration-300 faq-item"
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ delay: index * 0.05 }}
+                style={{ pointerEvents: 'auto' }}
               >
                 <div className="w-full">
-                  <div 
+                  <button 
                     onClick={() => toggleExpanded(faq.id)}
-                    className="p-6 cursor-pointer hover:bg-coral-50/30 transition-all duration-300"
+                    className="w-full p-6 cursor-pointer hover:bg-coral-50/30 transition-all duration-300 text-left"
+                    style={{ pointerEvents: 'auto', cursor: 'pointer' }}
                   >
                     <div className="flex items-start justify-between">
                       <div className="flex-1 pr-4">
@@ -362,7 +364,6 @@ export default function FAQ() {
                         </div>
                         <h3 className="text-lg font-semibold text-neutral-900 mb-2 hover:text-coral-700 transition-colors">
                           {faq.question}
-                          {faq.id === 189 && <span className="text-xs text-red-500 ml-2">ID:{faq.id} [{expandedItems.has(faq.id) ? 'OPEN' : 'CLOSED'}]</span>}
                         </h3>
                       </div>
                       <div className="flex-shrink-0">
@@ -377,7 +378,7 @@ export default function FAQ() {
                         </motion.div>
                       </div>
                     </div>
-                  </div>
+                  </button>
                   
                   <AnimatePresence>
                     {expandedItems.has(faq.id) && (
@@ -407,8 +408,7 @@ export default function FAQ() {
                   </AnimatePresence>
                 </div>
               </motion.div>
-            )
-            })
+            ))
           ) : (
             <motion.div 
               className="text-center py-12"
