@@ -130,6 +130,51 @@
            transition-all duration-300 ease-out;
   }
 
+
+
+
+  .card-standard {
+    @apply p-6 border border-neutral-200 rounded-xl shadow-elegant
+           hover:shadow-lg transition-shadow duration-300 ease-out relative overflow-hidden;
+    background: linear-gradient(135deg, #fff 60%, #ffe5e9 100%);
+  }
+  .card-standard::before {
+    content: '';
+    @apply absolute inset-0 rounded-xl pointer-events-none;
+    background: linear-gradient(120deg, #ffe5e9 0%, #fbeee6 100%);
+    opacity: 0.6;
+    z-index: 0;
+    transition: opacity 0.3s;
+  }
+  .card-standard:hover::before {
+    opacity: 0.85;
+  }
+  .card-standard > * {
+    position: relative;
+    z-index: 1;
+  }
+  .card-standard:hover {
+    @apply shadow-lg;
+  }
+  .card-glass:hover {
+    @apply shadow-luxury;
+  }
+  .card-glass::before {
+    @apply absolute inset-0 bg-white/10 backdrop-blur-md rounded-2xl
+           transition-all duration-300 ease-out;
+    content: '';
+  }
+  .card-glass:hover::before {
+    @apply bg-white/20;
+  }
+  .card-glass .card-header {
+    @apply text-lg font-semibold text-neutral-900 mb-2;
+  }
+  .card-glass .card-content {
+    @apply text-neutral-700;
+  }
+
+
   /* Text Gradients */
   .text-gradient-coral {
     @apply bg-gradient-to-r from-coral-600 to-coral-700 bg-clip-text text-transparent;

@@ -284,7 +284,7 @@ export default function Contact() {
           <div 
             className="lg:col-span-2"
           >
-            <div className="card-premium shadow-premium border-0 overflow-hidden">
+            <div className="card-standard shadow-premium border-0 overflow-hidden">
               <div className="mb-8">
                 <h3 className="heading-large text-neutral-900 mb-4 flex items-center">
                   Get a Quote in Minutes
