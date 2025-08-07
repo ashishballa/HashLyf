@@ -44,3 +44,23 @@ next-env.d.ts
 # Ignore NUL file and other problematic files
 NUL
 *.NUL
+
+# Additional cleanup - temporary and cache files
+*.tmp
+*.temp
+*.cache
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-*
+
+# Deployment and instruction files
+deployment-instructions.txt
+git-fix-guide.txt
+setup-*.txt
