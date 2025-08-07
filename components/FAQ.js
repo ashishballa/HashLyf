@@ -169,7 +169,7 @@ export default function FAQ() {
             Popular Questions
           </h3>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid-cards-3">
             {popularFAQs.map((faq, index) => (
               <motion.button
                 key={faq.id}
@@ -259,7 +259,7 @@ export default function FAQ() {
           <AnimatePresence>
             {showFilters && (
               <motion.div 
-                className="grid md:grid-cols-3 gap-4 mt-6 pt-6 border-t border-neutral-200"
+                className="grid-cards-3 mt-6 pt-6 border-t border-neutral-200"
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
@@ -488,7 +488,7 @@ export default function FAQ() {
               </motion.p>
               
               <motion.div 
-                className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+                className="responsive-flex justify-center items-center"
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ delay: 0.4 }}

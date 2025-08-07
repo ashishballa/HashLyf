@@ -37,7 +37,7 @@ export default function Hero({ openModal }) {
   }
 
   return (
-    <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden bg-mesh pt-32 md:pt-40">
+    <section ref={ref} className="section-hero min-h-screen flex items-center bg-mesh">
       {/* Premium gradient background with mesh overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-coral-900 via-coral-800 to-accent-900"></div>
       <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
@@ -72,17 +72,17 @@ export default function Hero({ openModal }) {
         }}
       />
       
-      <div className="container-premium relative z-10 px-4 sm:px-6 lg:px-8">
+      <div className="container-premium relative z-10">
         <motion.div 
-          className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center max-w-none"
+          className="responsive-two-col items-center max-w-none"
           variants={staggerContainer}
           initial="initial"
           animate={inView ? "animate" : "initial"}
         >
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8 text-center lg:text-left">
             {/* Professional badge with premium styling */}
             <motion.div 
-              className="inline-flex items-center space-x-3 bg-white/10 backdrop-blur-md rounded-full px-6 py-3 border border-white/20 shadow-glass"
+              className="badge-glass text-white"
               variants={fadeUp}
             >
               <Award className="text-accent-400 animate-pulse" size={20} />
@@ -90,17 +90,17 @@ export default function Hero({ openModal }) {
             </motion.div>
             
             <motion.h1 
-              className="heading-display text-white leading-tight"
+              className="heading-hero text-white"
               variants={fadeUp}
             >
-              <span className="block drop-shadow-2xl font-extrabold text-shadow-strong">Protect Your Family's</span>
-              <span className="block text-gradient-premium mt-2 animate-gradient drop-shadow-2xl font-extrabold">
+              <span className="block drop-shadow-2xl text-shadow-strong">Protect Your Family's</span>
+              <span className="block text-gradient-premium mt-2 animate-gradient drop-shadow-2xl">
                 Future Today
               </span>
             </motion.h1>
             
             <motion.p 
-              className="text-body-large text-coral-100 max-w-2xl"
+              className="text-body-large text-coral-100 max-w-2xl mx-auto lg:mx-0"
               variants={fadeUp}
             >
               Expert life insurance solutions across Ontario. From comprehensive life coverage 
@@ -109,7 +109,7 @@ export default function Hero({ openModal }) {
             </motion.p>
             
             <motion.div 
-              className="flex flex-col sm:flex-row gap-6"
+              className="responsive-flex justify-center lg:justify-start"
               variants={fadeUp}
             >
               <button 
@@ -129,7 +129,7 @@ export default function Hero({ openModal }) {
             
             {/* Enhanced trust indicators with premium cards */}
             <motion.div 
-              className="grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-6 pt-8"
+              className="flex flex-col sm:flex-row sm:justify-center lg:justify-start gap-3 sm:gap-4 lg:gap-6 pt-6 sm:pt-8"
               variants={fadeUp}
             >
               {[
@@ -139,16 +139,16 @@ export default function Hero({ openModal }) {
               ].map((item, index) => (
                 <motion.div 
                   key={index}
-                  className="text-center group cursor-pointer"
+                  className="flex-1 text-center group cursor-pointer"
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <div className="relative card-glass p-4 lg:p-6 group-hover:bg-white/20 transition-all duration-300 overflow-hidden">
+                  <div className="relative card-glass p-3 sm:p-4 lg:p-6 group-hover:bg-white/20 transition-all duration-300 overflow-hidden">
                     {/* Gradient background for each card */}
                     <div className={cn("absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-500", item.bgColor)}></div>
-                    <item.icon className={cn("relative z-10 mx-auto mb-3 group-hover:scale-110 transition-transform drop-shadow-lg", item.color)} size={36} />
-                    <div className="relative z-10 text-white font-bold text-lg drop-shadow-md">{item.title}</div>
-                    <div className="relative z-10 text-white/90 text-sm mt-1 font-medium drop-shadow-sm">{item.subtitle}</div>
+                    <item.icon className={cn("relative z-10 mx-auto mb-2 sm:mb-3 group-hover:scale-110 transition-transform drop-shadow-lg", item.color)} size={28} />
+                    <div className="relative z-10 text-white font-bold text-sm sm:text-base lg:text-lg drop-shadow-md">{item.title}</div>
+                    <div className="relative z-10 text-white/90 text-xs sm:text-sm mt-1 font-medium drop-shadow-sm">{item.subtitle}</div>
                   </div>
                 </motion.div>
               ))}
@@ -156,11 +156,11 @@ export default function Hero({ openModal }) {
           </div>
           
           <motion.div 
-            className="lg:text-right"
+            className="text-center lg:text-right order-first lg:order-last"
             variants={fadeUp}
           >
             {/* Premium success story card */}
-            <div className="card-premium relative overflow-hidden mx-auto max-w-lg lg:max-w-none">
+            <div className="card-premium relative overflow-hidden mx-auto max-w-sm sm:max-w-md lg:max-w-lg xl:max-w-none mt-8 lg:mt-0">
               {/* Animated background gradient */}
               <div className="absolute inset-0 bg-gradient-to-br from-white via-coral-50/80 to-accent-50/60"></div>
               <div className="absolute inset-0 bg-gradient-to-tr from-coral-100/40 via-transparent to-accent-100/40"></div>

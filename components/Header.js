@@ -92,51 +92,32 @@ export default function Header({ openModal }) {
           </div>
         </motion.div>
 
-        {/* Premium logo positioning */}
-        <motion.div 
-          className="hidden md:flex items-center absolute left-6 top-2 z-10"
-          initial={{ scale: 0, rotate: -180 }}
-          animate={{ scale: 1, rotate: 0 }}
-          transition={{ type: "spring", stiffness: 200, delay: 0.3 }}
-        >
-          <motion.div
-            whileHover={{ scale: 1.05, rotate: 5 }}
-            transition={{ type: "spring", stiffness: 400 }}
-          >
-            <Image 
-              src={HashLyfIcon} 
-              alt="HashLyf Logo" 
-              width={130}
-              height={130}
-               // style={{
-              //   filter: 'drop-shadow(0 0 20px rgba(238, 107, 107, 0.3))',
-              //   background: 'rgba(255,255,255,0.1)',
-              // }}
-            />
-          </motion.div>
-        </motion.div>
-
         {/* Main navigation with premium styling */}
-        <nav className="flex justify-between items-center py-4">
+        <nav className="flex justify-between items-center py-4 relative">
           <motion.div 
-            className="flex items-center space-x-4"
+            className="flex items-center space-x-3 md:space-x-4 flex-1"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4 }}
           >
-            {/* Mobile logo */}
-            <div className="md:hidden">
+            {/* Logo for all screen sizes */}
+            <motion.div
+              initial={{ scale: 0, rotate: -180 }}
+              animate={{ scale: 1, rotate: 0 }}
+              transition={{ type: "spring", stiffness: 200, delay: 0.3 }}
+              whileHover={{ scale: 1.05, rotate: 5 }}
+            >
               <Image 
                 src={HashLyfIcon} 
                 alt="HashLyf Logo" 
                 width={48} 
                 height={48} 
-                className="object-contain rounded-full shadow-glow-coral"
+                className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 object-contain rounded-full shadow-glow-coral flex-shrink-0"
               />
-            </div>
+            </motion.div>
             
             <div className={cn(
-              "heading-medium transition-colors duration-300",
+              "text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold transition-colors duration-300 flex-shrink-0",
               isScrolled ? "text-neutral-800" : "text-neutral-900"
             )}>
               <span className="text-coral-600 font-bold">Hash</span>Life Insurance

@@ -207,7 +207,7 @@ export default function Contact() {
         </motion.div>
 
         <motion.div 
-          className="flex flex-col lg:grid lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12"
+          className="responsive-form-grid"
           variants={staggerContainer}
           initial="initial"
           animate={inView ? "animate" : "initial"}

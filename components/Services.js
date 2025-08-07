@@ -37,28 +37,28 @@ export default function Services() {
   ]
 
   return (
-    <section id="services" className="section-padding warm-gradient-bg">
+    <section id="services" className="section-premium warm-gradient-bg">
       <div className="container-premium">
         <div className="text-center mb-20">
-          <div className="inline-flex items-center space-x-2 bg-primary-100 text-primary-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+          <div className="badge-premium mb-6">
             <Shield size={16} />
             <span>Professional Services</span>
           </div>
-          <h2 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+          <h2 className="heading-display text-gray-900 mb-6">
             Comprehensive Insurance
             <span className="gradient-text block">Solutions</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-body-large text-gray-600 max-w-4xl mx-auto">
             As an LLQP certified agent with WhiteHorse Financial, I compare quotes from 
             multiple insurance providers to find you the best possible coverage and rates 
             tailored to protect what matters most to you and your family.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-8">
+        <div className="grid-cards-4">
           {services.map((service, index) => (
             <div key={index} className="group card-hover">
-              <div className="relative bg-white rounded-3xl p-8 shadow-lg border border-gray-100 h-full">
+              <div className="card-premium h-full">
                 {/* Icon container */}
                 <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${service.gradient} shadow-lg mb-6 group-hover:scale-110 transition-transform duration-300`}>
                   {service.icon}

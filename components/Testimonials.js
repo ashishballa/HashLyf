@@ -35,31 +35,31 @@ export default function Testimonials() {
   ]
 
   return (
-    <section id="testimonials" className="section-padding bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
+    <section id="testimonials" className="section-premium bg-gradient-to-b from-white to-gray-50">
       {/* Background decoration */}
-      <div className="absolute top-20 right-10 w-64 h-64 bg-gradient-to-br from-accent-100 to-primary-100 rounded-full blur-3xl opacity-30"></div>
-      <div className="absolute bottom-20 left-10 w-72 h-72 bg-gradient-to-br from-primary-100 to-accent-100 rounded-full blur-3xl opacity-30"></div>
+      <div className="decoration-blob-medium decoration-top-right opacity-30"></div>
+      <div className="decoration-blob-large decoration-bottom-left opacity-30"></div>
       
       <div className="container-premium relative z-10">
         <div className="text-center mb-20">
-          <div className="inline-flex items-center space-x-2 bg-accent-100 text-accent-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+          <div className="badge-premium mb-6">
             <Heart size={16} />
             <span>Client Testimonials</span>
           </div>
-          <h2 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+          <h2 className="heading-display text-gray-900 mb-6">
             What Our Clients
             <span className="gradient-text block">Say About Us</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-body-large text-gray-600 max-w-3xl mx-auto">
             Real families sharing their experiences with our professional insurance services. 
             Their trust and satisfaction drive our commitment to excellence.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid-cards-3">
           {testimonials.map((testimonial, index) => (
             <div key={index} className="group card-hover">
-              <div className="relative bg-white rounded-3xl p-8 shadow-lg border border-gray-100 h-full overflow-hidden">
+              <div className="card-premium h-full">
                 {/* Quote decoration */}
                 <div className="absolute top-6 right-6 opacity-10 group-hover:opacity-20 transition-opacity">
                   <Quote size={48} className="text-primary-600" />
@@ -130,7 +130,7 @@ export default function Testimonials() {
         </div>
 
         {/* Trust indicators */}
-        <div className="grid md:grid-cols-4 gap-8 mt-16 text-center">
+        <div className="responsive-grid-stats mt-16 text-center">
           <div className="group">
             <div className="text-4xl font-bold text-primary-600 mb-2 group-hover:scale-110 transition-transform">50+</div>
             <div className="text-gray-600 font-medium">Happy Families</div>

@@ -32,27 +32,27 @@ export default function About() {
   ]
 
   return (
-    <section id="about" className="section-padding bg-white relative overflow-hidden">
+    <section id="about" className="section-premium bg-white">
       {/* Background decoration */}
-      <div className="absolute top-20 right-10 w-72 h-72 bg-gradient-to-br from-primary-100 to-accent-100 rounded-full blur-3xl opacity-30"></div>
-      <div className="absolute bottom-20 left-10 w-56 h-56 bg-gradient-to-br from-accent-100 to-primary-100 rounded-full blur-3xl opacity-30"></div>
+      <div className="decoration-blob-large decoration-top-right opacity-30"></div>
+      <div className="decoration-blob-small decoration-bottom-left opacity-30"></div>
       
       <div className="container-premium relative z-10">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center">
+        <div className="responsive-two-col items-center">
           <div className="space-y-8">
             <div>
-              <div className="inline-flex items-center space-x-2 bg-accent-100 text-accent-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+              <div className="badge-premium mb-6">
                 <Star size={16} />
                 <span>About Your Agent</span>
               </div>
-              <h2 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+              <h2 className="heading-display text-gray-900 mb-6">
                 Your Trusted Insurance
                 <span className="gradient-text block">Partner in Ontario</span>
               </h2>
             </div>
             
             <div className="space-y-6">
-              <p className="text-xl text-gray-600 leading-relaxed">
+              <p className="text-body-large text-gray-600">
                 As an LLQP certified life insurance agent with WhiteHorse Financial, 
                 I specialize in comparing multiple insurance providers across Ontario to 
                 find you the best possible coverage at the most competitive rates for 

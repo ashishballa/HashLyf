@@ -174,13 +174,21 @@
     background: linear-gradient(135deg, #fefefe 0%, #f8fafc 50%, #f1f5f9 100%);
   }
 
-  /* Layout Components */
+  /* Standardized Layout Components */
   .section-premium {
-    @apply relative py-24 lg:py-32 overflow-hidden;
+    @apply relative py-16 sm:py-20 lg:py-24 xl:py-32 overflow-hidden;
   }
   
   .section-padding {
     @apply py-16 sm:py-20 lg:py-24 xl:py-32;
+  }
+
+  .section-hero {
+    @apply relative py-20 sm:py-24 lg:py-32 xl:py-40 overflow-hidden;
+  }
+
+  .section-compact {
+    @apply relative py-12 sm:py-16 lg:py-20 overflow-hidden;
   }
   
   .section-premium::before {
@@ -217,17 +225,25 @@
     animation: slideUp 0.6s ease-out forwards;
   }
 
-  /* Responsive Typography */
+  /* Responsive Typography - Standardized Hierarchy */
+  .heading-hero {
+    @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold leading-tight;
+  }
+
   .heading-display {
-    @apply text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-display font-bold leading-tight;
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight;
   }
   
   .heading-large {
-    @apply text-3xl sm:text-4xl lg:text-5xl font-heading font-bold;
+    @apply text-2xl sm:text-3xl lg:text-4xl font-heading font-bold;
   }
   
   .heading-medium {
-    @apply text-2xl sm:text-3xl lg:text-4xl font-heading font-semibold;
+    @apply text-xl sm:text-2xl lg:text-3xl font-heading font-semibold;
+  }
+
+  .heading-small {
+    @apply text-lg sm:text-xl lg:text-2xl font-heading font-semibold;
   }
   
   .text-body-large {
@@ -236,6 +252,10 @@
   
   .text-body {
     @apply text-base sm:text-lg leading-relaxed;
+  }
+
+  .text-body-small {
+    @apply text-sm sm:text-base leading-relaxed;
   }
 
   /* Utility Classes */
@@ -479,5 +499,81 @@
     pointer-events: auto !important;
     cursor: pointer !important;
     user-select: auto !important;
+  }
+
+  /* Standardized Grid Systems */
+  .grid-standard {
+    @apply grid gap-6 sm:gap-8 lg:gap-12;
+  }
+
+  .grid-cards-2 {
+    @apply grid md:grid-cols-2 gap-6 sm:gap-8;
+  }
+
+  .grid-cards-3 {
+    @apply grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8;
+  }
+
+  .grid-cards-4 {
+    @apply grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8;
+  }
+  
+  /* Responsive Layout Utilities */
+  .responsive-flex {
+    @apply flex flex-col sm:flex-row gap-4 sm:gap-6;
+  }
+  
+  .responsive-grid-stats {
+    @apply grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8;
+  }
+  
+  .responsive-two-col {
+    @apply grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16;
+  }
+  
+  .responsive-form-grid {
+    @apply grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12;
+  }
+
+  /* Standardized Badges */
+  .badge-premium {
+    @apply inline-flex items-center space-x-2 bg-gradient-to-r from-coral-100 to-accent-100 text-coral-700 px-4 py-2 rounded-full text-sm font-semibold;
+  }
+
+  .badge-glass {
+    @apply inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md rounded-full px-4 py-2 border border-white/20 shadow-glass text-sm font-semibold;
+  }
+
+  .badge-standard {
+    @apply inline-flex items-center space-x-2 px-4 py-2 rounded-full text-sm font-semibold;
+  }
+
+  /* Standardized Background Decorations */
+  .decoration-blob-large {
+    @apply absolute w-72 h-72 bg-gradient-to-br from-coral-200/30 to-accent-200/30 rounded-full blur-3xl;
+  }
+
+  .decoration-blob-medium {
+    @apply absolute w-64 h-64 bg-gradient-to-br from-coral-200/20 to-accent-200/20 rounded-full blur-3xl;
+  }
+
+  .decoration-blob-small {
+    @apply absolute w-56 h-56 bg-gradient-to-br from-coral-200/20 to-accent-200/20 rounded-full blur-3xl;
+  }
+
+  .decoration-top-left {
+    @apply top-20 left-10;
+  }
+
+  .decoration-top-right {
+    @apply top-20 right-10;
+  }
+
+  .decoration-bottom-left {
+    @apply bottom-20 left-10;
+  }
+
+  .decoration-bottom-right {
+    @apply bottom-20 right-10;
   }
 }
