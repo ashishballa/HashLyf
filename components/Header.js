@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { Menu, X, Phone, Mail, Shield, Sparkles } from 'lucide-react'
-import HashLyfIcon from 'D:/Projects/LLQP/app/assets/HashLyf.png'  
+import HashLyfIcon from '../app/assets/HashLyf.png'  
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
