@@ -25,7 +25,7 @@ export default function Testimonials() {
     {
       name: "Jennifer K.",
       location: "Mississauga, ON", 
-      text: "The personalized service was outstanding. They took time to understand our family's unique situation and found coverage options we didn't even know existed.",
+      text: "The personalized service was outstanding. They took time to understand our family's unique situation and found coverage options we didn't even know existed. Good Job!",
       rating: 5,
       insuranceType: "Critical Illness",
       amount: "$50,000",
@@ -40,7 +40,7 @@ export default function Testimonials() {
       <div className="absolute top-20 right-10 w-64 h-64 bg-gradient-to-br from-accent-100 to-primary-100 rounded-full blur-3xl opacity-30"></div>
       <div className="absolute bottom-20 left-10 w-72 h-72 bg-gradient-to-br from-primary-100 to-accent-100 rounded-full blur-3xl opacity-30"></div>
       
-      <div className="container-custom relative z-10">
+      <div className="container-premium relative z-10">
         <div className="text-center mb-20">
           <div className="inline-flex items-center space-x-2 bg-accent-100 text-accent-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
             <Heart size={16} />

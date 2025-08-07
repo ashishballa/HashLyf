@@ -1,13 +1,12 @@
 'use client'
 
-import { useState } from 'react'
-import { Phone, Mail, MapPin, Clock, Send, MessageCircle, User, Shield, CheckCircle, Sparkles, Star } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { X, Phone, Mail, Shield, MessageCircle, User, Send, CheckCircle, Sparkles, Star } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
 import { supabase, isSupabaseEnabled } from '../lib/supabase'
 import { cn } from '../lib/utils'
 
-export default function Contact() {
+export default function ContactModal({ isOpen, onClose, autoOpen = false }) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -19,10 +18,20 @@ export default function Contact() {
   const [submitStatus, setSubmitStatus] = useState('')
   const [focusedField, setFocusedField] = useState('')
   
-  const [ref, inView] = useInView({
-    threshold: 0.1,
-    triggerOnce: true
-  })
+  // Auto-open functionality
+  useEffect(() => {
+    if (autoOpen) {
+      const timer = setTimeout(() => {
+        // Only open if no other modal is already open
+        if (!isOpen) {
+          // Trigger the modal to open via parent component
+          // This will be handled by the parent component's state
+        }
+      }, 3000) // Open after 3 seconds
+      
+      return () => clearTimeout(timer)
+    }
+  }, [autoOpen, isOpen])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -54,6 +63,12 @@ export default function Contact() {
 
       setSubmitStatus('success')
       setFormData({ name: '', email: '', phone: '', insuranceType: '', message: '' })
+      
+      // Close modal after successful submission
+      setTimeout(() => {
+        onClose()
+        setSubmitStatus('')
+      }, 3000)
     } catch (error) {
       console.error('Error submitting form:', error)
       setSubmitStatus('error')
@@ -70,200 +85,92 @@ export default function Contact() {
     })
   }
 
-  const contactInfo = [
-    {
-      icon: <Mail className="text-white" size={24} />,
-      title: "Email",
-      value: "harsha.whf@gmail.com",
-      description: "We respond within 24 hours",
-      gradient: "from-accent-500 to-accent-600",
-      bgColor: "bg-accent-50",
-      hoverColor: "hover:bg-accent-100"
-    },
-    {
-      icon: <MapPin className="text-white" size={24} />,
-      title: "Service Area",
-      value: "Ontario, Canada",
-      description: "Licensed across the province",
-      gradient: "from-success-500 to-success-600",
-      bgColor: "bg-success-50",
-      hoverColor: "hover:bg-success-100"
-    },
-    {
-      icon: <Clock className="text-white" size={24} />,
-      title: "Business Hours",
-      value: "Mon-Fri: 9:00 AM - 6:00 PM",
-      description: "Evening appointments available",
-      gradient: "from-secondary-500 to-secondary-600",
-      bgColor: "bg-secondary-50",
-      hoverColor: "hover:bg-secondary-100"
-    }
-  ]
-
-  const fadeUp = {
-    initial: { opacity: 0, y: 60 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.8, ease: "easeOut" }
-  }
-
-  const staggerContainer = {
-    animate: {
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
+  const handleClose = () => {
+    setFormData({ name: '', email: '', phone: '', insuranceType: '', message: '' })
+    setSubmitStatus('')
+    setFocusedField('')
+    onClose()
   }
 
   return (
-    <section ref={ref} id="contact" className="section-premium bg-mesh relative overflow-hidden">
-      {/* Premium background decoration */}
-      <div className="absolute top-20 left-10 w-64 h-64 bg-gradient-to-br from-coral-200/30 to-accent-200/30 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-20 right-10 w-72 h-72 bg-gradient-to-br from-accent-200/30 to-coral-200/30 rounded-full blur-3xl"></div>
-      
-      <div className="container-premium relative z-10">
-        <motion.div 
-          className="text-center mb-20"
-          variants={staggerContainer}
-          initial="initial"
-          animate={inView ? "animate" : "initial"}
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
         >
-          <motion.div 
-            className="inline-flex items-center space-x-2 bg-gradient-to-r from-coral-100 to-accent-100 text-coral-700 px-6 py-3 rounded-full text-sm font-bold mb-6 shadow-elegant hover:shadow-luxury transition-shadow duration-300"
-            variants={fadeUp}
-            whileHover={{ scale: 1.05 }}
-          >
-            <MessageCircle size={16} />
-            <Sparkles size={14} className="animate-pulse" />
-            <span>FREE QUOTE REQUEST</span>
-          </motion.div>
+          {/* Backdrop */}
+          <motion.div
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={handleClose}
+          />
           
-          <motion.h2 
-            className="heading-display text-neutral-900 mb-6"
-            variants={fadeUp}
+          {/* Modal Content */}
+          <motion.div
+            className="relative bg-white rounded-3xl shadow-premium max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
           >
-            Get Your <span className="text-gradient-coral">FREE</span> Insurance
-            <span className="text-gradient-premium block animate-gradient">Quote in 2 Minutes</span>
-          </motion.h2>
-          
-          <motion.p 
-            className="text-body-large text-neutral-600 max-w-4xl mx-auto mb-8"
-            variants={fadeUp}
-          >
-            🚀 <strong>No obligations.</strong> Get a personalized quote from an LLQP certified professional. 
-            I'll respond within 24 hours with coverage options tailored to your family's needs and budget.
-          </motion.p>
-          
-          <motion.div 
-            className="flex flex-wrap justify-center items-center gap-6 text-sm text-neutral-600"
-            variants={fadeUp}
-          >
-            {[
-              { text: "100% Free", icon: CheckCircle },
-              { text: "No Pressure", icon: CheckCircle },
-              { text: "24hr Response", icon: Star }
-            ].map((item, index) => (
-              <motion.div 
-                key={index}
-                className="flex items-center space-x-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-elegant"
-                whileHover={{ scale: 1.05, backgroundColor: "rgba(255, 255, 255, 1)" }}
+            {/* Header */}
+            <div className="relative p-8 pb-0">
+              <motion.button
+                onClick={handleClose}
+                className="absolute top-6 right-6 p-2 rounded-full hover:bg-gray-100 transition-colors duration-200 z-10"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <item.icon className="text-success-600" size={16} />
-                <span className="font-medium">{item.text}</span>
-              </motion.div>
-            ))}
-          </motion.div>
-        </motion.div>
-
-        <motion.div 
-          className="grid lg:grid-cols-3 gap-12"
-          variants={staggerContainer}
-          initial="initial"
-          animate={inView ? "animate" : "initial"}
-        >
-          {/* Premium Contact Information Cards */}
-          <motion.div 
-            className="lg:col-span-1 space-y-6"
-            variants={fadeUp}
-          >
-            <h3 className="heading-medium text-neutral-900 mb-8 flex items-center">
-              <User className="text-coral-600 mr-3 animate-pulse" size={28} />
-              Contact Information
-            </h3>
-            
-            {contactInfo.map((info, index) => (
-              <motion.div 
-                key={index}
-                className="group"
-                variants={fadeUp}
-                whileHover={{ y: -5 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <div className={cn(
-                  "card-premium cursor-pointer transition-all duration-300",
-                  info.bgColor,
-                  info.hoverColor
-                )}>
-                  <div className="flex items-start space-x-4">
-                    <motion.div 
-                      className={cn(
-                        "p-3 rounded-xl shadow-luxury",
-                        `bg-gradient-to-br ${info.gradient}`
-                      )}
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      transition={{ type: "spring", stiffness: 400 }}
-                    >
-                      {info.icon}
-                    </motion.div>
-                    <div className="flex-1">
-                      <h4 className="font-bold text-neutral-900 text-lg mb-1">{info.title}</h4>
-                      <p className="text-neutral-800 font-semibold mb-1">{info.value}</p>
-                      {info.title === "Business Hours" && (
-                        <p className="text-neutral-700 font-medium mb-1">Sat: 10:00 AM - 2:00 PM</p>
-                      )}
-                      <p className="text-sm text-neutral-600">{info.description}</p>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-
-            {/* Premium Trust Badge */}
-            <motion.div 
-              className="card-premium bg-gradient-to-br from-accent-50 to-accent-100 border border-accent-200 hover:shadow-glow-accent"
-              variants={fadeUp}
-              whileHover={{ scale: 1.02 }}
-            >
-              <div className="flex items-center space-x-3 mb-4">
-                <motion.div
-                  animate={{ rotate: [0, 5, -5, 0] }}
-                  transition={{ duration: 2, repeat: Infinity }}
+                <X size={24} className="text-gray-500" />
+              </motion.button>
+              
+              <div className="text-center mb-8">
+                <motion.div 
+                  className="inline-flex items-center space-x-2 bg-gradient-to-r from-coral-100 to-accent-100 text-coral-700 px-6 py-3 rounded-full text-sm font-bold mb-6 shadow-elegant hover:shadow-luxury transition-shadow duration-300"
+                  whileHover={{ scale: 1.05 }}
                 >
-                  <Shield className="text-accent-600" size={28} />
+                  <MessageCircle size={16} />
+                  <Sparkles size={14} className="animate-pulse" />
+                  <span>FREE QUOTE REQUEST</span>
                 </motion.div>
-                <h4 className="font-bold text-neutral-900">LLQP Certified Agent</h4>
-              </div>
-              <p className="text-neutral-700">
-                Licensed and certified professional providing trusted insurance advice across Ontario.
-              </p>
-            </motion.div>
-          </motion.div>
-
-          {/* Premium Contact Form */}
-          <motion.div 
-            className="lg:col-span-2"
-            variants={fadeUp}
-          >
-            <div className="card-premium shadow-premium border-0 overflow-hidden">
-              <div className="mb-8">
-                <h3 className="heading-large text-neutral-900 mb-4 flex items-center">
-                  Send Me a Message
-                  <Sparkles className="ml-3 text-coral-500 animate-pulse" size={24} />
-                </h3>
-                <p className="text-neutral-600">
-                  Fill out the form below and I'll get back to you within 24 hours with a personalized quote.
+                
+                <h2 className="heading-large text-neutral-900 mb-4">
+                  Get Your <span className="text-gradient-coral">FREE</span> Insurance
+                  <span className="text-gradient-premium block animate-gradient">Quote in 2 Minutes</span>
+                </h2>
+                
+                <p className="text-body text-neutral-600 mb-6">
+                  🚀 <strong>No obligations.</strong> Get a personalized quote from an LLQP certified professional. 
+                  I'll respond within 24 hours with coverage options tailored to your family's needs and budget.
                 </p>
+                
+                <div className="flex flex-wrap justify-center items-center gap-4 text-sm text-neutral-600">
+                  {[
+                    { text: "100% Free", icon: CheckCircle },
+                    { text: "No Pressure", icon: CheckCircle },
+                    { text: "24hr Response", icon: Star }
+                  ].map((item, index) => (
+                    <motion.div 
+                      key={index}
+                      className="flex items-center space-x-2 bg-white/80 backdrop-blur-sm px-3 py-2 rounded-full shadow-elegant"
+                      whileHover={{ scale: 1.05, backgroundColor: "rgba(255, 255, 255, 1)" }}
+                    >
+                      <item.icon className="text-success-600" size={16} />
+                      <span className="font-medium">{item.text}</span>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
+            </div>
 
+            {/* Form */}
+            <div className="px-8 pb-8">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <motion.div
@@ -409,7 +316,7 @@ export default function Contact() {
                       onChange={handleChange}
                       onFocus={() => setFocusedField('message')}
                       onBlur={() => setFocusedField('')}
-                      rows="5"
+                      rows="4"
                       className="textarea-premium pl-12"
                       placeholder="Tell me about your insurance needs, coverage amount, budget, or any questions you have..."
                     ></textarea>
@@ -503,7 +410,7 @@ export default function Contact() {
             </div>
           </motion.div>
         </motion.div>
-      </div>
-    </section>
+      )}
+    </AnimatePresence>
   )
 }

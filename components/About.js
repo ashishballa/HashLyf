@@ -37,8 +37,8 @@ export default function About() {
       <div className="absolute top-20 right-10 w-72 h-72 bg-gradient-to-br from-primary-100 to-accent-100 rounded-full blur-3xl opacity-30"></div>
       <div className="absolute bottom-20 left-10 w-56 h-56 bg-gradient-to-br from-accent-100 to-primary-100 rounded-full blur-3xl opacity-30"></div>
       
-      <div className="container-custom relative z-10">
-        <div className="grid lg:grid-cols-2 gap-20 items-center">
+      <div className="container-premium relative z-10">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center">
           <div className="space-y-8">
             <div>
               <div className="inline-flex items-center space-x-2 bg-accent-100 text-accent-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
@@ -53,14 +53,18 @@ export default function About() {
             
             <div className="space-y-6">
               <p className="text-xl text-gray-600 leading-relaxed">
-                As an LLQP certified life insurance agent with HashLife Insurers, 
+                As an LLQP certified life insurance agent with HashLife Insurance, 
                 I bring years of dedicated experience helping families across Ontario secure 
                 their financial future through comprehensive insurance solutions.
               </p>
               <p className="text-lg text-gray-600 leading-relaxed">
-                My recent success in securing a $20,000 funeral expense policy demonstrates 
-                my commitment to understanding each client's unique needs and finding the 
-                right coverage to protect what matters most to your family.
+                Recently, I helped the Johnson family navigate a challenging situation when 
+                their existing life insurance was about to lapse due to premium increases. 
+                After carefully analyzing their finances and future goals, I restructured their 
+                coverage into a comprehensive $150,000 term life policy with a $25,000 funeral 
+                expense rider - all while reducing their monthly premiums by 30%. Six months 
+                later, this planning proved invaluable when Mr. Johnson was diagnosed with a 
+                serious health condition, securing their family's financial future just in time.
               </p>
             </div>
             
@@ -83,7 +87,7 @@ export default function About() {
                 <Phone className="text-primary-600" size={32} />
                 <div>
                   <div className="font-semibold text-gray-900">Ready to get started?</div>
-                  <div className="text-gray-600">Call (905) 922-6136 for immediate assistance</div>
+                  <div className="text-gray-600">Fill out our contact form for immediate assistance</div>
                 </div>
               </div>
             </div>

@@ -1,7 +1,11 @@
 'use client'
+
 import { useState, useEffect, useMemo } from 'react'
-import { Search, ChevronDown, ChevronUp, Filter, Star, BookOpen, Users, Heart, Calculator, Shield } from 'lucide-react'
+import { Search, ChevronDown, ChevronUp, Filter, Star, BookOpen, Users, Heart, Calculator, Shield, Sparkles } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
 import { faqData, searchFAQs, getCategories, getPopularFAQs } from '../data/faqData'
+import { cn } from '../lib/utils'
 
 const CategoryIcon = ({ category }) => {
   const icons = {
@@ -19,7 +23,14 @@ const CategoryIcon = ({ category }) => {
   }
   
   const Icon = icons[category] || BookOpen
-  return <Icon size={20} className="text-primary-500" />
+  return (
+    <motion.div
+      whileHover={{ scale: 1.2, rotate: 5 }}
+      transition={{ type: "spring", stiffness: 400 }}
+    >
+      <Icon size={20} className="text-coral-500" />
+    </motion.div>
+  )
 }
 
 export default function FAQ() {
@@ -29,6 +40,11 @@ export default function FAQ() {
   const [selectedAgeGroup, setSelectedAgeGroup] = useState('all')
   const [expandedItems, setExpandedItems] = useState(new Set())
   const [showFilters, setShowFilters] = useState(false)
+
+  const [ref, inView] = useInView({
+    threshold: 0.1,
+    triggerOnce: true
+  })
 
   const categories = useMemo(() => getCategories(), [])
   const popularFAQs = useMemo(() => getPopularFAQs(), [])
@@ -74,250 +90,418 @@ export default function FAQ() {
     ? categories[selectedCategory] 
     : []
 
+  const fadeUp = {
+    initial: { opacity: 0, y: 60 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.8, ease: "easeOut" }
+  }
+
+  const staggerContainer = {
+    animate: {
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  }
+
   return (
-    <section id="faq" className="section-padding gradient-bg relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute top-20 right-10 w-64 h-64 bg-gradient-to-br from-primary-200 to-accent-200 rounded-full blur-3xl opacity-20"></div>
-      <div className="absolute bottom-20 left-10 w-72 h-72 bg-gradient-to-br from-accent-100 to-primary-200 rounded-full blur-3xl opacity-20"></div>
+    <section ref={ref} id="faq" className="section-premium bg-mesh relative overflow-hidden">
+      {/* Premium Background decoration */}
+      <div className="absolute top-20 right-10 w-64 h-64 bg-gradient-to-br from-coral-200/30 to-accent-200/30 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 left-10 w-72 h-72 bg-gradient-to-br from-accent-100/30 to-coral-200/30 rounded-full blur-3xl"></div>
       
-      <div className="container-custom relative z-10">
-        {/* Header with Gradient */}
-        <div className="text-center mb-16 relative">
-          {/* Gradient Background for Header */}
-          <div className="absolute inset-0 bg-gradient-to-r from-primary-500/10 via-accent-400/15 to-primary-600/10 rounded-3xl blur-2xl"></div>
+      <div className="container-premium relative z-10">
+        {/* Premium Header with Enhanced Gradient */}
+        <motion.div 
+          className="text-center mb-16 relative"
+          variants={staggerContainer}
+          initial="initial"
+          animate={inView ? "animate" : "initial"}
+        >
+          {/* Enhanced Gradient Background for Header */}
+          <div className="absolute inset-0 bg-gradient-to-r from-coral-500/10 via-accent-400/15 to-coral-600/10 rounded-3xl blur-2xl"></div>
           
           <div className="relative z-10 p-8">
-            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary-100 to-accent-100 text-primary-700 px-6 py-3 rounded-full text-sm font-bold mb-6 shadow-lg">
+            <motion.div 
+              className="inline-flex items-center space-x-2 bg-gradient-to-r from-coral-100 to-accent-100 text-coral-700 px-6 py-3 rounded-full text-sm font-bold mb-6 shadow-luxury hover:shadow-glow-coral transition-shadow duration-300"
+              variants={fadeUp}
+              whileHover={{ scale: 1.05 }}
+            >
               <BookOpen size={16} />
+              <Sparkles size={14} className="animate-pulse" />
               <span>LIFE INSURANCE FAQ</span>
-            </div>
-            <h2 className="text-5xl lg:text-7xl font-bold text-gray-900 mb-6">
-              Got <span className="gradient-text">Questions?</span>
-              <span className="block">We've Got Answers</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+            </motion.div>
+            
+            <motion.h2 
+              className="heading-display text-neutral-900 mb-6"
+              variants={fadeUp}
+            >
+              Got <span className="text-gradient-coral">Questions?</span>
+              <span className="block text-gradient-premium animate-gradient">We've Got Answers</span>
+            </motion.h2>
+            
+            <motion.p 
+              className="text-body-large text-neutral-600 max-w-4xl mx-auto"
+              variants={fadeUp}
+            >
               Comprehensive answers to Ontario's most frequently asked life insurance questions. 
               Search by topic, age group, or specific situation to find exactly what you need to know.
-            </p>
+            </motion.p>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Popular Questions */}
-        <div className="mb-12">
-          <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-            <Star className="text-primary-500 mr-3" size={24} />
+        {/* Premium Popular Questions */}
+        <motion.div 
+          className="mb-12"
+          variants={fadeUp}
+          initial="initial"
+          animate={inView ? "animate" : "initial"}
+        >
+          <h3 className="heading-medium text-neutral-900 mb-6 flex items-center">
+            <motion.div
+              animate={{ rotate: [0, 10, -10, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              <Star className="text-coral-500 mr-3" size={24} />
+            </motion.div>
             Popular Questions
           </h3>
+          
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {popularFAQs.map((faq) => (
-              <button
+            {popularFAQs.map((faq, index) => (
+              <motion.button
                 key={faq.id}
                 onClick={() => {
                   setSearchQuery(faq.question)
                   setExpandedItems(new Set([faq.id]))
                 }}
-                className="text-left p-4 bg-white rounded-xl border border-gray-200 hover:border-primary-300 hover:bg-primary-50 transition-all duration-300 group shadow-sm hover:shadow-md"
+                className="card-premium text-left hover:shadow-glow-coral transition-all duration-300 group cursor-pointer"
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -5, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
-                <p className="text-gray-800 font-medium group-hover:text-primary-600 transition-colors">
+                <p className="text-neutral-800 font-medium group-hover:text-coral-600 transition-colors">
                   {faq.question}
                 </p>
-                <p className="text-sm text-gray-500 mt-2">{faq.category}</p>
-              </button>
+                <p className="text-sm text-neutral-500 mt-2 flex items-center">
+                  <span className="w-2 h-2 bg-coral-400 rounded-full mr-2"></span>
+                  {faq.category}
+                </p>
+              </motion.button>
             ))}
           </div>
-        </div>
+        </motion.div>
 
-        {/* Enhanced Search and Filters Card */}
-        <div className="bg-gradient-to-br from-white via-primary-50/30 to-accent-50/30 rounded-2xl p-6 shadow-lg border border-gray-100 mb-8 backdrop-blur-sm">
-          {/* Search Bar */}
+        {/* Premium Search and Filters Card */}
+        <motion.div 
+          className="card-premium bg-gradient-to-br from-white via-coral-50/30 to-accent-50/30 shadow-premium border-0 mb-8"
+          variants={fadeUp}
+          initial="initial"
+          animate={inView ? "animate" : "initial"}
+        >
+          {/* Premium Search Bar */}
           <div className="relative mb-6">
-            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+            <Search className={cn(
+              "absolute left-4 top-1/2 transform -translate-y-1/2 transition-colors",
+              searchQuery ? "text-coral-500" : "text-neutral-400"
+            )} size={20} />
             <input
               type="text"
               placeholder="Search for specific questions, topics, or concerns..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-12 pr-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300 bg-white shadow-sm"
+              className="input-premium pl-12 text-base"
             />
           </div>
 
-          {/* Filter Toggle */}
+          {/* Premium Filter Toggle */}
           <div className="flex justify-between items-center">
-            <button
+            <motion.button
               onClick={() => setShowFilters(!showFilters)}
-              className="flex items-center space-x-2 text-gray-600 hover:text-primary-600 transition-colors"
+              className="flex items-center space-x-2 text-neutral-600 hover:text-coral-600 transition-colors font-medium"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               <Filter size={16} />
               <span>Advanced Filters</span>
-              {showFilters ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-            </button>
-            
-            {(selectedCategory !== 'all' || selectedSubcategory !== 'all' || selectedAgeGroup !== 'all' || searchQuery) && (
-              <button
-                onClick={resetFilters}
-                className="text-primary-600 hover:text-primary-700 font-medium"
+              <motion.div
+                animate={{ rotate: showFilters ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
               >
-                Clear All Filters
-              </button>
-            )}
+                <ChevronDown size={16} />
+              </motion.div>
+            </motion.button>
+            
+            <AnimatePresence>
+              {(selectedCategory !== 'all' || selectedSubcategory !== 'all' || selectedAgeGroup !== 'all' || searchQuery) && (
+                <motion.button
+                  onClick={resetFilters}
+                  className="text-coral-600 hover:text-coral-700 font-medium"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Clear All Filters
+                </motion.button>
+              )}
+            </AnimatePresence>
           </div>
 
-          {/* Filters */}
-          {showFilters && (
-            <div className="grid md:grid-cols-3 gap-4 mt-6 pt-6 border-t border-gray-200">
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Category</label>
-                <select
-                  value={selectedCategory}
-                  onChange={(e) => {
-                    setSelectedCategory(e.target.value)
-                    setSelectedSubcategory('all')
-                  }}
-                  className="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                >
-                  <option value="all">All Categories</option>
-                  {Object.keys(categories).map((category) => (
-                    <option key={category} value={category}>{category}</option>
-                  ))}
-                </select>
-              </div>
+          {/* Premium Filters */}
+          <AnimatePresence>
+            {showFilters && (
+              <motion.div 
+                className="grid md:grid-cols-3 gap-4 mt-6 pt-6 border-t border-neutral-200"
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div>
+                  <label className="block text-sm font-semibold text-neutral-700 mb-2">Category</label>
+                  <select
+                    value={selectedCategory}
+                    onChange={(e) => {
+                      setSelectedCategory(e.target.value)
+                      setSelectedSubcategory('all')
+                    }}
+                    className="input-premium cursor-pointer appearance-none"
+                  >
+                    <option value="all">All Categories</option>
+                    {Object.keys(categories).map((category) => (
+                      <option key={category} value={category}>{category}</option>
+                    ))}
+                  </select>
+                </div>
 
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Subcategory</label>
-                <select
-                  value={selectedSubcategory}
-                  onChange={(e) => setSelectedSubcategory(e.target.value)}
-                  className="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                  disabled={selectedCategory === 'all'}
-                >
-                  <option value="all">All Subcategories</option>
-                  {subcategories.map((subcategory) => (
-                    <option key={subcategory} value={subcategory}>{subcategory}</option>
-                  ))}
-                </select>
-              </div>
+                <div>
+                  <label className="block text-sm font-semibold text-neutral-700 mb-2">Subcategory</label>
+                  <select
+                    value={selectedSubcategory}
+                    onChange={(e) => setSelectedSubcategory(e.target.value)}
+                    className="input-premium cursor-pointer appearance-none disabled:opacity-50"
+                    disabled={selectedCategory === 'all'}
+                  >
+                    <option value="all">All Subcategories</option>
+                    {subcategories.map((subcategory) => (
+                      <option key={subcategory} value={subcategory}>{subcategory}</option>
+                    ))}
+                  </select>
+                </div>
 
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Age Group</label>
-                <select
-                  value={selectedAgeGroup}
-                  onChange={(e) => setSelectedAgeGroup(e.target.value)}
-                  className="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                >
-                  <option value="all">All Ages</option>
-                  <option value="18-30">Young Adults (18-30)</option>
-                  <option value="30-50">Middle Age (30-50)</option>
-                  <option value="25-45">Families (25-45)</option>
-                  <option value="50+">Seniors (50+)</option>
-                </select>
-              </div>
-            </div>
-          )}
-        </div>
+                <div>
+                  <label className="block text-sm font-semibold text-neutral-700 mb-2">Age Group</label>
+                  <select
+                    value={selectedAgeGroup}
+                    onChange={(e) => setSelectedAgeGroup(e.target.value)}
+                    className="input-premium cursor-pointer appearance-none"
+                  >
+                    <option value="all">All Ages</option>
+                    <option value="18-30">Young Adults (18-30)</option>
+                    <option value="30-50">Middle Age (30-50)</option>
+                    <option value="25-45">Families (25-45)</option>
+                    <option value="50+">Seniors (50+)</option>
+                  </select>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
 
-        {/* Results Count */}
-        <div className="mb-6">
-          <p className="text-gray-600">
-            Showing {filteredFAQs.length} of {faqData.length} questions
-            {searchQuery && <span className="font-semibold"> for "{searchQuery}"</span>}
+        {/* Premium Results Count */}
+        <motion.div 
+          className="mb-6"
+          variants={fadeUp}
+          initial="initial"
+          animate={inView ? "animate" : "initial"}
+        >
+          <p className="text-neutral-600 font-medium">
+            Showing <span className="text-coral-600 font-bold">{filteredFAQs.length}</span> of <span className="font-bold">{faqData.length}</span> questions
+            {searchQuery && <span className="font-semibold"> for "<span className="text-coral-600">{searchQuery}</span>"</span>}
           </p>
-        </div>
+        </motion.div>
 
-        {/* FAQ Items */}
+        {/* Premium FAQ Items */}
         <div className="space-y-4">
           {filteredFAQs.length > 0 ? (
-            filteredFAQs.map((faq) => (
-              <div
+            filteredFAQs.map((faq, index) => (
+              <motion.div
                 key={faq.id}
-                className="bg-white rounded-2xl border border-gray-200 overflow-hidden hover:border-primary-300 transition-all duration-300 shadow-sm hover:shadow-md"
+                className="card-premium overflow-hidden hover:shadow-glow-coral transition-all duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ delay: index * 0.05 }}
               >
                 <button
                   onClick={() => toggleExpanded(faq.id)}
-                  className="w-full p-6 text-left hover:bg-primary-50 transition-all duration-300"
+                  className="w-full p-6 text-left hover:bg-coral-50/30 transition-all duration-300"
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex-1 pr-4">
                       <div className="flex items-center space-x-3 mb-2">
                         <CategoryIcon category={faq.category} />
-                        <span className="text-sm text-primary-600 font-medium">{faq.category}</span>
+                        <span className="text-sm text-coral-600 font-medium">{faq.category}</span>
                         {faq.subcategory && (
                           <>
-                            <span className="text-gray-400">•</span>
-                            <span className="text-sm text-gray-500">{faq.subcategory}</span>
+                            <span className="text-neutral-400">•</span>
+                            <span className="text-sm text-neutral-500">{faq.subcategory}</span>
                           </>
                         )}
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      <h3 className="text-lg font-semibold text-neutral-900 mb-2 hover:text-coral-700 transition-colors">
                         {faq.question}
                       </h3>
-                      {expandedItems.has(faq.id) && (
-                        <div className="text-gray-700 leading-relaxed">
-                          <p>{faq.answer}</p>
-                          <div className="flex flex-wrap gap-2 mt-4">
-                            {faq.tags.slice(0, 5).map((tag) => (
-                              <span
-                                key={tag}
-                                className="px-2 py-1 bg-primary-100 text-primary-700 rounded-md text-xs"
-                              >
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                      )}
+                      <AnimatePresence>
+                        {expandedItems.has(faq.id) && (
+                          <motion.div 
+                            className="text-neutral-700 leading-relaxed"
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            <p className="mb-4">{faq.answer}</p>
+                            <div className="flex flex-wrap gap-2">
+                              {faq.tags.slice(0, 5).map((tag, tagIndex) => (
+                                <motion.span
+                                  key={tag}
+                                  className="px-3 py-1 bg-coral-100 text-coral-700 rounded-full text-xs font-medium"
+                                  initial={{ opacity: 0, scale: 0.8 }}
+                                  animate={{ opacity: 1, scale: 1 }}
+                                  transition={{ delay: tagIndex * 0.1 }}
+                                >
+                                  {tag}
+                                </motion.span>
+                              ))}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
                     <div className="flex-shrink-0">
-                      {expandedItems.has(faq.id) ? (
-                        <ChevronUp className="text-primary-500" size={24} />
-                      ) : (
-                        <ChevronDown className="text-gray-400" size={24} />
-                      )}
+                      <motion.div
+                        animate={{ rotate: expandedItems.has(faq.id) ? 180 : 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <ChevronDown className={cn(
+                          "transition-colors",
+                          expandedItems.has(faq.id) ? "text-coral-500" : "text-neutral-400"
+                        )} size={24} />
+                      </motion.div>
                     </div>
                   </div>
                 </button>
-              </div>
+              </motion.div>
             ))
           ) : (
-            <div className="text-center py-12">
-              <BookOpen className="mx-auto text-gray-400 mb-4" size={48} />
-              <h3 className="text-xl font-semibold text-gray-700 mb-2">No questions found</h3>
-              <p className="text-gray-500 mb-4">
+            <motion.div 
+              className="text-center py-12"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ type: "spring", stiffness: 200 }}
+            >
+              <motion.div
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                <BookOpen className="mx-auto text-neutral-400 mb-4" size={48} />
+              </motion.div>
+              <h3 className="text-xl font-semibold text-neutral-700 mb-2">No questions found</h3>
+              <p className="text-neutral-500 mb-6">
                 Try adjusting your search terms or filters to find what you're looking for.
               </p>
-              <button
+              <motion.button
                 onClick={resetFilters}
-                className="btn-primary"
+                className="btn-premium"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 Reset Filters
-              </button>
-            </div>
+              </motion.button>
+            </motion.div>
           )}
         </div>
 
-        {/* Enhanced Contact CTA */}
-        <div className="mt-16 text-center">
-          <div className="bg-gradient-to-br from-primary-500 via-accent-500 to-primary-600 rounded-2xl p-8 text-white relative overflow-hidden">
-            {/* Background gradient effects */}
-            <div className="absolute top-0 left-0 w-32 h-32 bg-white/10 rounded-full -translate-x-6 -translate-y-6"></div>
-            <div className="absolute bottom-0 right-0 w-40 h-40 bg-white/10 rounded-full translate-x-8 translate-y-8"></div>
+        {/* Premium Contact CTA */}
+        <motion.div 
+          className="mt-16 text-center"
+          variants={fadeUp}
+          initial="initial"
+          animate={inView ? "animate" : "initial"}
+        >
+          <div className="relative bg-gradient-to-br from-coral-500 via-accent-500 to-coral-600 rounded-3xl p-8 text-white overflow-hidden shadow-premium">
+            {/* Premium background gradient effects */}
+            <motion.div 
+              className="absolute top-0 left-0 w-32 h-32 bg-white/10 rounded-full -translate-x-6 -translate-y-6"
+              animate={{ rotate: 360, scale: [1, 1.2, 1] }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            />
+            <motion.div 
+              className="absolute bottom-0 right-0 w-40 h-40 bg-white/10 rounded-full translate-x-8 translate-y-8"
+              animate={{ rotate: -360, scale: [1.2, 1, 1.2] }}
+              transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+            />
+            
+            {/* Floating sparkles */}
+            <motion.div
+              className="absolute top-4 right-4"
+              animate={{ rotate: [0, 360], scale: [1, 1.5, 1] }}
+              transition={{ duration: 3, repeat: Infinity }}
+            >
+              <Sparkles className="text-white/60" size={20} />
+            </motion.div>
             
             <div className="relative z-10">
-              <h3 className="text-2xl font-bold mb-4">Still have questions?</h3>
-              <p className="text-primary-100 mb-6 max-w-2xl mx-auto">
+              <motion.h3 
+                className="heading-large mb-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ delay: 0.2 }}
+              >
+                Still have questions?
+              </motion.h3>
+              
+              <motion.p 
+                className="text-coral-100 mb-6 max-w-2xl mx-auto text-body"
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ delay: 0.3 }}
+              >
                 Can't find what you're looking for? I'm here to help with personalized answers 
                 and free quotes tailored to your specific situation.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a href="#contact" className="bg-white text-primary-600 px-6 py-3 rounded-xl font-semibold hover:bg-primary-50 transition-colors shadow-lg">
+              </motion.p>
+              
+              <motion.div 
+                className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ delay: 0.4 }}
+              >
+                <motion.a 
+                  href="#contact" 
+                  className="bg-white text-coral-600 px-8 py-4 rounded-xl font-semibold shadow-luxury hover:shadow-glow-coral transition-all duration-300"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                >
                   Get Personal Answers
-                </a>
-                <a href="tel:9059226136" className="border-2 border-white text-white px-6 py-3 rounded-xl font-semibold hover:bg-white/10 transition-colors">
-                  Call (905) 922-6136
-                </a>
-              </div>
+                </motion.a>
+                
+                <motion.a 
+                  href="#contact" 
+                  className="border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition-all duration-300"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Send Message
+                </motion.a>
+              </motion.div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

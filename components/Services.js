@@ -38,7 +38,7 @@ export default function Services() {
 
   return (
     <section id="services" className="section-padding warm-gradient-bg">
-      <div className="container-custom">
+      <div className="container-premium">
         <div className="text-center mb-20">
           <div className="inline-flex items-center space-x-2 bg-primary-100 text-primary-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
             <Shield size={16} />
@@ -49,7 +49,7 @@ export default function Services() {
             <span className="gradient-text block">Solutions</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            As an LLQP certified agent with HashLife Insurers, I provide personalized 
+            As an LLQP certified agent with HashLife Insurance, I provide personalized 
             insurance solutions tailored to protect what matters most to you and your family.
           </p>
         </div>

@@ -1,4 +1,4 @@
-# HashLife Insurers - Life Insurance Website
+# HashLife Insurance - Life Insurance Website
 
 A modern, professional website for a life insurance agent built with Next.js, Tailwind CSS, and Supabase.
 
