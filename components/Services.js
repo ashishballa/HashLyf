@@ -49,8 +49,9 @@ export default function Services() {
             <span className="gradient-text block">Solutions</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            As an LLQP certified agent with HashLife Insurance, I provide personalized 
-            insurance solutions tailored to protect what matters most to you and your family.
+            As an LLQP certified agent with WhiteHorse Financial, I compare quotes from 
+            multiple insurance providers to find you the best possible coverage and rates 
+            tailored to protect what matters most to you and your family.
           </p>
         </div>
 

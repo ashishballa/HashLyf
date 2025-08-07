@@ -53,9 +53,10 @@ export default function About() {
             
             <div className="space-y-6">
               <p className="text-xl text-gray-600 leading-relaxed">
-                As an LLQP certified life insurance agent with HashLife Insurance, 
-                I bring years of dedicated experience helping families across Ontario secure 
-                their financial future through comprehensive insurance solutions.
+                As an LLQP certified life insurance agent with WhiteHorse Financial, 
+                I specialize in comparing multiple insurance providers across Ontario to 
+                find you the best possible coverage at the most competitive rates for 
+                your family's unique needs.
               </p>
               <p className="text-lg text-gray-600 leading-relaxed">
                 Recently, I helped the Johnson family navigate a challenging situation when 

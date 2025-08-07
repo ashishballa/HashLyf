@@ -1,6 +1,6 @@
 # HashLife Insurance - Life Insurance Website
 
-A modern, professional website for a life insurance agent built with Next.js, Tailwind CSS, and Supabase.
+A modern, professional website for a WhiteHorse Financial insurance agent who compares multiple providers to find the best coverage and rates. Built with Next.js, Tailwind CSS, and Supabase.
 
 ## Features
 

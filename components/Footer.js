@@ -6,8 +6,8 @@ export default function Footer() {
           <div>
             <h3 className="text-xl font-bold mb-4">HashLife Insurance</h3>
             <p className="text-gray-300 mb-4">
-              LLQP certified life insurance agent providing comprehensive 
-              protection solutions across Ontario.
+              LLQP certified life insurance agent with WhiteHorse Financial. 
+              I compare multiple providers to find you the best coverage and rates across Ontario.
             </p>
             <div className="text-sm text-gray-400">
               Licensed in Ontario, Canada
