@@ -1,6 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { supabase } from '../lib/supabase'
+import { supabase, isSupabaseEnabled } from '../lib/supabase'
 
 export default function Admin() {
   const [submissions, setSubmissions] = useState([])
@@ -12,6 +12,12 @@ export default function Admin() {
 
   const fetchSubmissions = async () => {
     try {
+      if (!isSupabaseEnabled()) {
+        console.warn('Supabase not configured')
+        setSubmissions([])
+        return
+      }
+
       const { data, error } = await supabase
         .from('contact_submissions')
         .select('*')
@@ -28,6 +34,11 @@ export default function Admin() {
 
   const updateStatus = async (id, status) => {
     try {
+      if (!isSupabaseEnabled()) {
+        console.warn('Supabase not configured')
+        return
+      }
+
       const { error } = await supabase
         .from('contact_submissions')
         .update({ status })
@@ -41,6 +52,25 @@ export default function Admin() {
   }
 
   if (loading) return <div className="p-8">Loading...</div>
+
+  if (!isSupabaseEnabled()) {
+    return (
+      <div className="min-h-screen bg-gray-50 p-8">
+        <div className="max-w-6xl mx-auto">
+          <h1 className="text-3xl font-bold mb-8">Contact Submissions</h1>
+          <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4">
+            <div className="flex">
+              <div className="ml-3">
+                <p className="text-sm text-yellow-700">
+                  Supabase is not configured. Please set up your environment variables to view contact submissions.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 p-8">

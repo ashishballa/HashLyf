@@ -19,8 +19,13 @@ Option 2: NETLIFY (Also Free)
 4. Get URL like: your-app-name.netlify.app
 
 ENVIRONMENT VARIABLES NEEDED:
-- NEXT_PUBLIC_SUPABASE_URL (already set)
-- NEXT_PUBLIC_SUPABASE_ANON_KEY (already set)
+- NEXT_PUBLIC_SUPABASE_URL (for database functionality)
+- NEXT_PUBLIC_SUPABASE_ANON_KEY (for database functionality)
+
+Note: If you don't set up Supabase environment variables:
+- The app will still work perfectly for viewing
+- Contact form will show success but won't save to database
+- Admin panel will display a configuration message
 
 Your app is production-ready with:
 ✅ Supabase database integration

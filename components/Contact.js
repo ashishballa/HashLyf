@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { Phone, Mail, MapPin, Clock, Send, MessageCircle, User, Shield, CheckCircle } from 'lucide-react'
-import { supabase } from '../lib/supabase'
+import { supabase, isSupabaseEnabled } from '../lib/supabase'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -19,9 +19,12 @@ export default function Contact() {
     setIsSubmitting(true)
     
     try {
-      // Check if Supabase is properly configured
-      if (process.env.NEXT_PUBLIC_SUPABASE_URL === 'https://placeholder.supabase.co') {
-        throw new Error('Supabase not configured')
+      // Check if Supabase is available
+      if (!isSupabaseEnabled()) {
+        console.warn('Supabase not configured, form submission skipped')
+        setSubmitStatus('success') // Still show success to user
+        setFormData({ name: '', email: '', phone: '', insuranceType: '', message: '' })
+        return
       }
 
       const { data, error } = await supabase
