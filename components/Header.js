@@ -46,9 +46,9 @@ export default function Header() {
           <Image 
             src={HashLyfIcon} 
             alt="HashLyf Logo" 
-            width={120} 
-            height={120} 
-            className="rounded-full shadow-md"
+            width={170} 
+            height={170} 
+            
           />
         </div>
         {/* Main navigation */}
