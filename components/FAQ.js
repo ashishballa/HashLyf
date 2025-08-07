@@ -70,13 +70,16 @@ export default function FAQ() {
   }, [searchQuery, selectedCategory, selectedSubcategory, selectedAgeGroup])
 
   const toggleExpanded = (id) => {
-    const newExpanded = new Set(expandedItems)
-    if (newExpanded.has(id)) {
-      newExpanded.delete(id)
-    } else {
-      newExpanded.add(id)
-    }
-    setExpandedItems(newExpanded)
+    setExpandedItems(prevExpanded => {
+      const newExpanded = new Set(prevExpanded)
+      if (newExpanded.has(id)) {
+        newExpanded.delete(id)
+      } else {
+        newExpanded.add(id)
+      }
+      console.log('Toggling FAQ ID:', id, 'New state:', Array.from(newExpanded))
+      return newExpanded
+    })
   }
 
   const resetFilters = () => {
@@ -328,7 +331,11 @@ export default function FAQ() {
         {/* Premium FAQ Items */}
         <div className="space-y-4">
           {filteredFAQs.length > 0 ? (
-            filteredFAQs.map((faq, index) => (
+            filteredFAQs.map((faq, index) => {
+              if (faq.id === 189) {
+                console.log('Rendering FAQ 189:', faq)
+              }
+              return (
               <motion.div
                 key={faq.id}
                 className="card-premium overflow-hidden hover:shadow-glow-coral transition-all duration-300"
@@ -355,6 +362,7 @@ export default function FAQ() {
                         </div>
                         <h3 className="text-lg font-semibold text-neutral-900 mb-2 hover:text-coral-700 transition-colors">
                           {faq.question}
+                          {faq.id === 189 && <span className="text-xs text-red-500 ml-2">ID:{faq.id} [{expandedItems.has(faq.id) ? 'OPEN' : 'CLOSED'}]</span>}
                         </h3>
                       </div>
                       <div className="flex-shrink-0">
@@ -399,7 +407,8 @@ export default function FAQ() {
                   </AnimatePresence>
                 </div>
               </motion.div>
-            ))
+            )
+            })
           ) : (
             <motion.div 
               className="text-center py-12"
