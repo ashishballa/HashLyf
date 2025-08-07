@@ -336,65 +336,68 @@ export default function FAQ() {
                 animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ delay: index * 0.05 }}
               >
-                <button
-                  onClick={() => toggleExpanded(faq.id)}
-                  className="w-full p-6 text-left hover:bg-coral-50/30 transition-all duration-300"
-                >
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1 pr-4">
-                      <div className="flex items-center space-x-3 mb-2">
-                        <CategoryIcon category={faq.category} />
-                        <span className="text-sm text-coral-600 font-medium">{faq.category}</span>
-                        {faq.subcategory && (
-                          <>
-                            <span className="text-neutral-400">•</span>
-                            <span className="text-sm text-neutral-500">{faq.subcategory}</span>
-                          </>
-                        )}
+                <div className="w-full">
+                  <div 
+                    onClick={() => toggleExpanded(faq.id)}
+                    className="p-6 cursor-pointer hover:bg-coral-50/30 transition-all duration-300"
+                  >
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1 pr-4">
+                        <div className="flex items-center space-x-3 mb-2">
+                          <CategoryIcon category={faq.category} />
+                          <span className="text-sm text-coral-600 font-medium">{faq.category}</span>
+                          {faq.subcategory && (
+                            <>
+                              <span className="text-neutral-400">•</span>
+                              <span className="text-sm text-neutral-500">{faq.subcategory}</span>
+                            </>
+                          )}
+                        </div>
+                        <h3 className="text-lg font-semibold text-neutral-900 mb-2 hover:text-coral-700 transition-colors">
+                          {faq.question}
+                        </h3>
                       </div>
-                      <h3 className="text-lg font-semibold text-neutral-900 mb-2 hover:text-coral-700 transition-colors">
-                        {faq.question}
-                      </h3>
-                      <AnimatePresence>
-                        {expandedItems.has(faq.id) && (
-                          <motion.div 
-                            className="text-neutral-700 leading-relaxed"
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: "auto" }}
-                            exit={{ opacity: 0, height: 0 }}
-                            transition={{ duration: 0.3 }}
-                          >
-                            <p className="mb-4">{faq.answer}</p>
-                            <div className="flex flex-wrap gap-2">
-                              {faq.tags.slice(0, 5).map((tag, tagIndex) => (
-                                <motion.span
-                                  key={tag}
-                                  className="px-3 py-1 bg-coral-100 text-coral-700 rounded-full text-xs font-medium"
-                                  initial={{ opacity: 0, scale: 0.8 }}
-                                  animate={{ opacity: 1, scale: 1 }}
-                                  transition={{ delay: tagIndex * 0.1 }}
-                                >
-                                  {tag}
-                                </motion.span>
-                              ))}
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                    <div className="flex-shrink-0">
-                      <motion.div
-                        animate={{ rotate: expandedItems.has(faq.id) ? 180 : 0 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <ChevronDown className={cn(
-                          "transition-colors",
-                          expandedItems.has(faq.id) ? "text-coral-500" : "text-neutral-400"
-                        )} size={24} />
-                      </motion.div>
+                      <div className="flex-shrink-0">
+                        <motion.div
+                          animate={{ rotate: expandedItems.has(faq.id) ? 180 : 0 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <ChevronDown className={cn(
+                            "transition-colors",
+                            expandedItems.has(faq.id) ? "text-coral-500" : "text-neutral-400"
+                          )} size={24} />
+                        </motion.div>
+                      </div>
                     </div>
                   </div>
-                </button>
+                  
+                  <AnimatePresence>
+                    {expandedItems.has(faq.id) && (
+                      <motion.div 
+                        className="px-6 pb-6 text-neutral-700 leading-relaxed"
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <p className="mb-4">{faq.answer}</p>
+                        <div className="flex flex-wrap gap-2">
+                          {faq.tags.slice(0, 5).map((tag, tagIndex) => (
+                            <motion.span
+                              key={tag}
+                              className="px-3 py-1 bg-coral-100 text-coral-700 rounded-full text-xs font-medium"
+                              initial={{ opacity: 0, scale: 0.8 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{ delay: tagIndex * 0.1 }}
+                            >
+                              {tag}
+                            </motion.span>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               </motion.div>
             ))
           ) : (
