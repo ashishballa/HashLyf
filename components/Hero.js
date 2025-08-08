@@ -196,7 +196,7 @@ export default function Hero({ openModal }) {
                     whileHover={{ scale: 1.02 }}
                   >
                     <motion.div 
-                      className="text-6xl lg:text-7xl font-bold text-white mb-3 drop-shadow-2xl"
+                      className="  font-bold text-white mb-3 drop-shadow-2xl"
                       initial={{ scale: 0 }}
                       animate={inView ? { scale: 1 } : { scale: 0 }}
                       transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
