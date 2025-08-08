@@ -56,7 +56,7 @@ export default function About() {
                 As a local LLQP certified life insurance agent with WhiteHorse Financial serving Toronto, Ottawa, Hamilton, Mississauga, and all Ontario communities, I specialize in comparing multiple insurance providers to find you the best possible coverage at competitive rates. Whether you're looking for life insurance, travel insurance for visiting parents and grandparents, or funeral expense coverage, I provide personalized service right in your neighborhood.
               </p>
               <p className="text-lg text-gray-600 leading-relaxed">
-                Recently, I helped the Johnson family navigate a challenging situation when 
+                Recently, I helped the Johnson family in Toronto navigate a challenging situation when 
                 their existing life insurance was about to lapse due to premium increases. 
                 After carefully analyzing their finances and future goals, I restructured their 
                 coverage into a comprehensive $150,000 term life policy with a $25,000 funeral 
@@ -64,6 +64,33 @@ export default function About() {
                 later, this planning proved invaluable when Mr. Johnson was diagnosed with a 
                 serious health condition, securing their family's financial future just in time.
               </p>
+              
+              <div className="bg-gradient-to-r from-blue-50 to-green-50 rounded-2xl p-6 mt-6 border border-blue-100">
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Local Insurance Service Areas</h3>
+                <div className="grid grid-cols-2 gap-4 text-sm">
+                  <div>
+                    <h4 className="font-semibold text-blue-700 mb-2">Greater Toronto Area (GTA)</h4>
+                    <ul className="text-gray-600 space-y-1">
+                      <li>• Life Insurance Agent Toronto</li>
+                      <li>• Travel Insurance Mississauga</li>
+                      <li>• Funeral Insurance Brampton</li>
+                      <li>• Super Visa Insurance Markham</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-green-700 mb-2">Ontario Cities</h4>
+                    <ul className="text-gray-600 space-y-1">
+                      <li>• Life Insurance Agent Ottawa</li>
+                      <li>• Travel Insurance Hamilton</li>
+                      <li>• Critical Illness London</li>
+                      <li>• Insurance Consultation Windsor</li>
+                    </ul>
+                  </div>
+                </div>
+                <p className="text-gray-600 text-sm mt-4 italic">
+                  Serving families across Ontario with personalized insurance solutions and competitive rates from top Canadian insurance companies.
+                </p>
+              </div>
             </div>
             
             {/* Achievement stats */}

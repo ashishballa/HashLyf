@@ -103,7 +103,7 @@ export default function Hero({ openModal }) {
               className="text-body-large text-coral-100 max-w-2xl mx-auto lg:mx-0"
               variants={fadeUp}
             >
-              Local LLQP certified life insurance agent serving Toronto, Ottawa, Hamilton, Mississauga and all Ontario cities. From comprehensive life coverage to travel insurance for visiting parents and grandparents, I help families secure their financial future with personalized protection plans.
+              Why choose HashLife Insurers? As your local LLQP certified life insurance agent serving Toronto, Ottawa, Hamilton, Mississauga and all Ontario cities, I provide the best life insurance rates by comparing quotes from multiple insurance companies. From affordable term life insurance starting at just $25/month to specialized travel insurance for visiting parents and grandparents, I help families secure their financial future with personalized protection plans tailored to your needs and budget.
             </motion.p>
             
             <motion.div 

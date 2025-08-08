@@ -108,6 +108,59 @@ export default function FAQ() {
 
   return (
     <section ref={ref} id="faq" className="section-premium bg-mesh relative overflow-hidden">
+      {/* FAQ Schema for Rich Snippets */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              ...popularFAQs.slice(0, 8).map(faq => ({
+                "@type": "Question",
+                "name": faq.question,
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": faq.answer
+                }
+              })),
+              {
+                "@type": "Question", 
+                "name": "Do visiting parents and grandparents need travel insurance in Canada?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, travel insurance is mandatory for Super Visa applicants and highly recommended for all visitors as provincial health plans don't cover visitors."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is Super Visa insurance and how much coverage is required?", 
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Super Visa insurance is mandatory travel insurance for parents/grandparents visiting Canada. Minimum $100,000 coverage for healthcare, hospitalization, and repatriation is required."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can parents with pre-existing medical conditions get travel insurance?",
+                "acceptedAnswer": {
+                  "@type": "Answer", 
+                  "text": "Yes, many insurers offer coverage for pre-existing conditions, though premiums may be higher. Full disclosure of medical history is essential."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How long can parents stay in Canada with travel insurance?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Travel insurance can cover visits up to 365 days, with some policies offering extensions. Super Visa allows up to 2 years per visit."
+                }
+              }
+            ]
+          })
+        }}
+      />
+      
       {/* Premium Background decoration */}
       <div className="absolute top-20 right-10 w-64 h-64 bg-gradient-to-br from-coral-200/30 to-accent-200/30 rounded-full blur-3xl"></div>
       <div className="absolute bottom-20 left-10 w-72 h-72 bg-gradient-to-br from-accent-100/30 to-coral-200/30 rounded-full blur-3xl"></div>

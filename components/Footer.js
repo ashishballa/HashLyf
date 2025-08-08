@@ -4,7 +4,7 @@ export default function Footer() {
       <div className="container-premium">
         <div className="grid-cards-4">
           <div>
-            <h3 className="heading-small mb-4">HashLife Insurance</h3>
+            <h3 className="heading-small mb-4">HashLife Insurers</h3>
             <p className="text-body-small text-gray-300 mb-4">
               Local LLQP certified life insurance agent with WhiteHorse Financial serving Toronto, Ottawa, Hamilton, Mississauga and all Ontario communities. I compare multiple providers to find you the best coverage and rates for life insurance, travel insurance, and funeral expense coverage.
             </p>
@@ -54,7 +54,7 @@ export default function Footer() {
         </div>
         
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; 2025 HashLife Insurance. All rights reserved. LLQP Licensed Agent.</p>
+          <p>&copy; 2025 HashLife Insurers. All rights reserved. LLQP Licensed Agent.</p>
           <p className="mt-2 text-sm">
             This website is for informational purposes. Insurance products subject to underwriting approval.
           </p>

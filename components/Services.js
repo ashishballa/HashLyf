@@ -4,41 +4,41 @@ export default function Services() {
   const services = [
     {
       icon: <Shield className="text-white" size={48} />,
-      title: "Life Insurance",
-      description: "Comprehensive life insurance policies to provide financial security for your loved ones when they need it most.",
-      features: ["Term Life Insurance", "Whole Life Insurance", "Universal Life Insurance", "Customized Coverage"],
+      title: "Life Insurance Ontario",
+      description: "Affordable term life insurance, permanent whole life, and universal life insurance policies to provide financial protection and security for your family when they need it most. Compare rates from top Canadian insurance companies.",
+      features: ["Affordable Term Life Insurance", "Permanent Whole Life Insurance", "Universal Life Insurance", "Mortgage Protection Insurance"],
       gradient: "from-primary-600 to-primary-700",
       bgGradient: "from-primary-50 to-primary-100"
     },
     {
       icon: <Heart className="text-white" size={48} />,
-      title: "Funeral Expense Insurance", 
-      description: "Dedicated coverage for funeral and burial expenses, ensuring your family isn't burdened with unexpected costs.",
-      features: ["Up to $25,000 Coverage", "No Medical Exam Options", "Guaranteed Acceptance", "Immediate Benefits"],
+      title: "Final Expense & Burial Insurance", 
+      description: "Affordable funeral expense insurance and burial coverage to protect your family from unexpected final costs. No medical exam options available with guaranteed acceptance policies.",
+      features: ["Up to $25,000 Burial Coverage", "No Medical Exam Final Expense", "Guaranteed Acceptance Policies", "Immediate Death Benefits"],
       gradient: "from-primary-500 to-primary-600",
       bgGradient: "from-primary-50 to-primary-100"
     },
     {
       icon: <Umbrella className="text-white" size={48} />,
-      title: "Critical Illness Coverage",
-      description: "Protection against major health events that could impact your family's financial stability.",
-      features: ["Cancer Coverage", "Heart Attack Protection", "Stroke Benefits", "Return of Premium Options"],
+      title: "Critical Illness & Disability Insurance",
+      description: "Comprehensive critical illness insurance and disability coverage to protect against major health events like cancer, heart attack, and stroke that could impact your family's financial stability and income.",
+      features: ["Cancer Insurance Coverage", "Heart Attack & Stroke Protection", "Disability Income Benefits", "Return of Premium Options"],
       gradient: "from-success-600 to-success-700",
       bgGradient: "from-success-50 to-success-100"
     },
     {
       icon: <Plane className="text-white" size={48} />,
-      title: "Parents & Grandparents Travel Insurance",
-      description: "Specialized travel insurance coverage for visiting parents and grandparents, including Super Visa requirements and extended stay protection.",
-      features: ["Super Visa Compliance", "Up to $100,000 Coverage", "Pre-existing Conditions", "Extended Stay Options"],
+      title: "Super Visa & Visitor Travel Insurance",
+      description: "Specialized travel medical insurance for visiting parents and grandparents to Canada, including mandatory Super Visa insurance requirements, visitor insurance, and emergency travel coverage for extended stays.",
+      features: ["Mandatory Super Visa Insurance", "Up to $100,000 Medical Coverage", "Pre-existing Medical Conditions", "Multi-Trip & Extended Stay Options"],
       gradient: "from-blue-600 to-blue-700",
       bgGradient: "from-blue-50 to-blue-100"
     },
     {
       icon: <FileText className="text-white" size={48} />,
-      title: "Insurance Review & Planning",
-      description: "Comprehensive review of your existing coverage and personalized planning for your family's unique needs.",
-      features: ["Free Policy Review", "Needs Assessment", "Coverage Gap Analysis", "Ongoing Support"],
+      title: "Insurance Consultation & Policy Review",
+      description: "Free comprehensive insurance consultation, policy review services, and personalized insurance planning to assess your coverage gaps and optimize your family's financial protection strategy.",
+      features: ["Free Insurance Consultation", "Policy Needs Assessment", "Coverage Gap Analysis", "Ongoing Insurance Support"],
       gradient: "from-accent-600 to-accent-700",
       bgGradient: "from-accent-50 to-accent-100"
     }
@@ -57,9 +57,7 @@ export default function Services() {
             <span className="gradient-text block">Solutions</span>
           </h2>
           <p className="text-body-large text-gray-600 max-w-4xl mx-auto">
-            As an LLQP certified agent with WhiteHorse Financial, I compare quotes from 
-            multiple insurance providers to find you the best possible coverage and rates 
-            tailored to protect what matters most to you and your family.
+            As a licensed LLQP certified insurance broker with WhiteHorse Financial, I provide comprehensive insurance solutions across Ontario. From affordable term life insurance and permanent whole life coverage to specialized travel insurance for visiting family members, I compare quotes from multiple insurance companies and providers to find you the best possible coverage, competitive rates, and personalized protection plans tailored to safeguard what matters most to you and your loved ones.
           </p>
         </div>
 

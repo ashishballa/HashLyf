@@ -10,6 +10,7 @@ import Testimonials from '../components/Testimonials'
 import Contact from '../components/Contact'
 import Footer from '../components/Footer'
 import ContactModal from '../components/ContactModal'
+import Breadcrumb from '../components/Breadcrumb'
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -29,6 +30,14 @@ export default function Home() {
   return (
     <main className="min-h-screen responsive-width">
       <Header openModal={openModal} />
+      
+      {/* Breadcrumb Navigation */}
+      <div className="pt-24 pb-4 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <Breadcrumb items={[]} />
+        </div>
+      </div>
+      
       <Hero openModal={openModal} />
       <Contact />
       <Services />

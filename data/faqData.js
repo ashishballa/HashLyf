@@ -103,6 +103,48 @@ export const faqData = [
     keywords: ["honesty", "disclosure", "medical history", "claim denial"]
   },
 
+  // VOICE SEARCH & FEATURED SNIPPETS OPTIMIZED
+  {
+    id: 205,
+    question: "How much does life insurance cost in Ontario?",
+    answer: "Life insurance costs in Ontario typically range from $20-$100+ per month depending on age, health, coverage amount, and type. A healthy 30-year-old can get $250,000 term life insurance for approximately $25-$40 monthly, while whole life insurance costs significantly more but builds cash value.",
+    category: "Pricing",
+    subcategory: "Cost Analysis",
+    tags: ["cost", "price", "monthly premium", "ontario rates", "affordable"],
+    ageGroup: "all",
+    keywords: ["how much", "pricing", "rates", "monthly cost", "premium"]
+  },
+  {
+    id: 206,
+    question: "Who is the best life insurance agent in Ontario?",
+    answer: "The best life insurance agent in Ontario is an LLQP certified professional who compares multiple insurance companies, provides transparent quotes, has excellent reviews, and offers personalized service. Look for agents licensed by FSRAO with proven track records of helping families find affordable coverage.",
+    category: "Agent Selection",
+    subcategory: "Choosing an Agent",
+    tags: ["best agent", "LLQP certified", "ontario agent", "licensed professional"],
+    ageGroup: "all",
+    keywords: ["best agent", "top agent", "recommended", "professional", "licensed"]
+  },
+  {
+    id: 207,
+    question: "What is Super Visa insurance and where can I buy it?",
+    answer: "Super Visa insurance is mandatory travel medical coverage required for parents and grandparents visiting Canada on a Super Visa. You need minimum $100,000 coverage for healthcare, hospitalization, and repatriation. Licensed insurance agents like HashLife Insurers can help you compare rates and find compliant policies from Canadian insurance companies.",
+    category: "Travel Insurance",
+    subcategory: "Super Visa Requirements",
+    tags: ["super visa insurance", "mandatory coverage", "where to buy", "requirements"],
+    ageGroup: "55+",
+    keywords: ["what is", "requirements", "where to buy", "mandatory", "parents visa"]
+  },
+  {
+    id: 208,
+    question: "How do I get travel insurance for my parents visiting Canada?",
+    answer: "To get travel insurance for parents visiting Canada: 1) Contact a licensed insurance agent, 2) Compare quotes from multiple insurers, 3) Choose coverage amount ($100,000+ for Super Visa), 4) Disclose pre-existing conditions, 5) Purchase before travel begins. The process typically takes 1-3 days and costs $3-$15 per day depending on age and health.",
+    category: "Travel Insurance",
+    subcategory: "Application Process",
+    tags: ["how to get", "parents travel insurance", "step by step", "process"],
+    ageGroup: "55+",
+    keywords: ["how to get", "process", "steps", "parents visiting", "application"]
+  },
+
   // TRAVEL INSURANCE - Parents & Grandparents
   {
     id: 201,

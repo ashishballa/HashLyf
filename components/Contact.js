@@ -183,7 +183,7 @@ export default function Contact() {
             variants={fadeUp}
           >
             🚀 <strong>No obligations.</strong> Get a personalized quote from an LLQP certified professional. 
-            I'll respond within 24 hours with coverage options tailored to your family's needs and budget.
+            Whether you need affordable term life insurance starting at $25/month, travel insurance for parents visiting Canada, Super Visa insurance with $100,000+ coverage, or funeral expense insurance with no medical exam, I'll respond within 24 hours with coverage options tailored to your family's needs and budget.
           </motion.p>
           
           <motion.div 

@@ -38,7 +38,7 @@ export default function Header({ openModal }) {
   return (
     <motion.header 
       className={cn(
-        "fixed w-full top-0 z-50 transition-all duration-500",
+        "fixed w-full top-0 z-[100] transition-all duration-500",
         isScrolled 
           ? "glass-navbar shadow-premium backdrop-blur-lg" 
           : "bg-white/95 backdrop-blur-sm shadow-elegant"
@@ -96,7 +96,7 @@ export default function Header({ openModal }) {
         {/* Main navigation with premium styling */}
         <nav className="flex justify-between items-center py-4 relative">
           <motion.div 
-            className="flex items-center space-x-3 md:space-x-4 flex-1"
+            className="flex items-center space-x-3 md:space-x-4 flex-shrink-0"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4 }}
@@ -121,13 +121,13 @@ export default function Header({ openModal }) {
               "text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold transition-colors duration-300 flex-shrink-0",
               isScrolled ? "text-neutral-800" : "text-neutral-900"
             )}>
-              <span className="text-coral-600 font-bold">Hash</span>Life Insurance
+              <span className="text-coral-600 font-bold">Hash</span>Life Insurers
             </div>
           </motion.div>
 
           {/* Desktop navigation with premium hover effects */}
           <motion.div 
-            className="hidden lg:flex items-center space-x-8"
+            className="hidden lg:flex items-center space-x-8 flex-1 justify-center"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, staggerChildren: 0.1 }}
@@ -153,18 +153,18 @@ export default function Header({ openModal }) {
             ))}
           </motion.div>
 
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4 flex-shrink-0">
             {/* Premium CTA button */}
             <motion.div 
-              className="hidden lg:block"
+              className="hidden lg:block flex-shrink-0"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.7 }}
             >
               <motion.button 
                 onClick={openModal}
-                className="btn-premium group"
-                whileHover={{ scale: 1.05 }}
+                className="btn-premium group relative z-10"
+                whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
                 <span>Get Free Quote</span>
