@@ -17,16 +17,20 @@ export default function Header({ openModal }) {
       setIsScrolled(window.scrollY > 50)
     }
     
-    // Initialize dark mode from localStorage
+    // Initialize dark mode from localStorage - default to light mode
     const savedTheme = localStorage.getItem('theme')
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
     
-    if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+    if (savedTheme === 'dark') {
       setIsDark(true)
       document.documentElement.classList.add('dark')
     } else {
+      // Default to light mode (ignore system preferences)
       setIsDark(false)
       document.documentElement.classList.remove('dark')
+      // Set light mode as default if no preference is saved
+      if (!savedTheme) {
+        localStorage.setItem('theme', 'light')
+      }
     }
     
     window.addEventListener('scroll', handleScroll)
