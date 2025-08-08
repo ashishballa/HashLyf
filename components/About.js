@@ -53,10 +53,7 @@ export default function About() {
             
             <div className="space-y-6">
               <p className="text-body-large text-gray-600">
-                As an LLQP certified life insurance agent with WhiteHorse Financial, 
-                I specialize in comparing multiple insurance providers across Ontario to 
-                find you the best possible coverage at the most competitive rates for 
-                your family's unique needs.
+                As a local LLQP certified life insurance agent with WhiteHorse Financial serving Toronto, Ottawa, Hamilton, Mississauga, and all Ontario communities, I specialize in comparing multiple insurance providers to find you the best possible coverage at competitive rates. Whether you're looking for life insurance, travel insurance for visiting parents and grandparents, or funeral expense coverage, I provide personalized service right in your neighborhood.
               </p>
               <p className="text-lg text-gray-600 leading-relaxed">
                 Recently, I helped the Johnson family navigate a challenging situation when 

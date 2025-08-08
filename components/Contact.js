@@ -110,7 +110,8 @@ export default function Contact() {
       description: "We respond within 24 hours",
       gradient: "from-accent-500 to-accent-600",
       bgColor: "bg-accent-50",
-      hoverColor: "hover:bg-accent-100"
+      hoverColor: "hover:bg-accent-100",
+      link: "mailto:harsha.whf@gmail.com"
     },
     {
       icon: <MapPin className="text-white" size={24} />,
@@ -230,32 +231,61 @@ export default function Contact() {
                 whileHover={{ y: -5 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                <div className={cn(
-                  "card-premium cursor-pointer transition-all duration-300",
-                  info.bgColor,
-                  info.hoverColor
-                )}>
-                  <div className="flex items-start space-x-4">
-                    <motion.div 
-                      className={cn(
-                        "p-3 rounded-xl shadow-luxury",
-                        `bg-gradient-to-br ${info.gradient}`
-                      )}
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      transition={{ type: "spring", stiffness: 400 }}
-                    >
-                      {info.icon}
-                    </motion.div>
-                    <div className="flex-1">
-                      <h4 className="font-bold text-neutral-900 text-lg mb-1">{info.title}</h4>
-                      <p className="text-neutral-800 font-semibold mb-1">{info.value}</p>
-                      {info.title === "Business Hours" && (
-                        <p className="text-neutral-700 font-medium mb-1">Sat: 10:00 AM - 2:00 PM</p>
-                      )}
-                      <p className="text-sm text-neutral-600">{info.description}</p>
+                {info.link ? (
+                  <a href={info.link} className={cn(
+                    "block card-standard cursor-pointer transition-all duration-300",
+                    info.bgColor,
+                    info.hoverColor
+                  )}>
+                    <div className="flex items-start space-x-4">
+                      <motion.div 
+                        className={cn(
+                          "p-3 rounded-xl shadow-luxury",
+                          `bg-gradient-to-br ${info.gradient}`
+                        )}
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        transition={{ type: "spring", stiffness: 400 }}
+                      >
+                        {info.icon}
+                      </motion.div>
+                      <div className="flex-1">
+                        <h4 className="font-bold text-neutral-900 text-lg mb-1">{info.title}</h4>
+                        <p className="text-neutral-800 font-semibold mb-1 hover:text-accent-600 transition-colors">{info.value}</p>
+                        {info.title === "Business Hours" && (
+                          <p className="text-neutral-700 font-medium mb-1">Sat: 10:00 AM - 2:00 PM</p>
+                        )}
+                        <p className="text-sm text-neutral-600">{info.description}</p>
+                      </div>
+                    </div>
+                  </a>
+                ) : (
+                  <div className={cn(
+                    "card-standard cursor-pointer transition-all duration-300",
+                    info.bgColor,
+                    info.hoverColor
+                  )}>
+                    <div className="flex items-start space-x-4">
+                      <motion.div 
+                        className={cn(
+                          "p-3 rounded-xl shadow-luxury",
+                          `bg-gradient-to-br ${info.gradient}`
+                        )}
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        transition={{ type: "spring", stiffness: 400 }}
+                      >
+                        {info.icon}
+                      </motion.div>
+                      <div className="flex-1">
+                        <h4 className="font-bold text-neutral-900 text-lg mb-1">{info.title}</h4>
+                        <p className="text-neutral-800 font-semibold mb-1">{info.value}</p>
+                        {info.title === "Business Hours" && (
+                          <p className="text-neutral-700 font-medium mb-1">Sat: 10:00 AM - 2:00 PM</p>
+                        )}
+                        <p className="text-sm text-neutral-600">{info.description}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
               </motion.div>
             ))}
 

@@ -59,7 +59,8 @@ export default function Header({ openModal }) {
           transition={{ delay: 0.2 }}
         >
           <div className="flex items-center space-x-8">
-            <motion.div 
+            <motion.a 
+              href="mailto:harsha.whf@gmail.com"
               className="flex items-center space-x-2 group cursor-pointer"
               whileHover={{ scale: 1.05 }}
             >
@@ -67,7 +68,7 @@ export default function Header({ openModal }) {
               <span className="font-medium text-neutral-700 hover:text-coral-600 transition-colors">
                 harsha.whf@gmail.com
               </span>
-            </motion.div>
+            </motion.a>
           </div>
           
           <div className="flex items-center space-x-6">
@@ -109,7 +110,7 @@ export default function Header({ openModal }) {
             >
               <Image 
                 src={HashLyfIcon} 
-                alt="HashLyf Logo" 
+                alt="HashLife Insurance - LLQP Certified Life Insurance Agent Ontario" 
                 width={48} 
                 height={48} 
                 className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 object-contain rounded-full shadow-glow-coral flex-shrink-0"

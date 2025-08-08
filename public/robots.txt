@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://hashlife-insurance.com/sitemap.xml
+
+# Optimize crawling
+Crawl-delay: 1
+
+# Block admin areas
+Disallow: /admin/
+Disallow: /api/
+
+# Allow important pages for SEO
+Allow: /
+Allow: /services
+Allow: /about
+Allow: /contact
+Allow: /faq

@@ -103,9 +103,7 @@ export default function Hero({ openModal }) {
               className="text-body-large text-coral-100 max-w-2xl mx-auto lg:mx-0"
               variants={fadeUp}
             >
-              Expert life insurance solutions across Ontario. From comprehensive life coverage 
-              to funeral expense policies, I help families secure their financial future with 
-              personalized protection plans that matter.
+              Local LLQP certified life insurance agent serving Toronto, Ottawa, Hamilton, Mississauga and all Ontario cities. From comprehensive life coverage to travel insurance for visiting parents and grandparents, I help families secure their financial future with personalized protection plans.
             </motion.p>
             
             <motion.div 
