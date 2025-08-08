@@ -249,12 +249,12 @@ export default function Contact() {
                         {info.icon}
                       </motion.div>
                       <div className="flex-1">
-                        <h4 className="font-bold text-neutral-900 text-lg mb-1">{info.title}</h4>
-                        <p className="text-neutral-800 font-semibold mb-1 hover:text-accent-600 transition-colors">{info.value}</p>
+                        <h4 className="font-bold text-neutral-900 dark:text-white text-lg mb-1">{info.title}</h4>
+                        <p className="text-neutral-800 dark:text-neutral-200 font-semibold mb-1 hover:text-accent-600 dark:hover:text-accent-400 transition-colors">{info.value}</p>
                         {info.title === "Business Hours" && (
-                          <p className="text-neutral-700 font-medium mb-1">Sat: 10:00 AM - 2:00 PM</p>
+                          <p className="text-neutral-700 dark:text-neutral-300 font-medium mb-1">Sat: 10:00 AM - 2:00 PM</p>
                         )}
-                        <p className="text-sm text-neutral-600">{info.description}</p>
+                        <p className="text-sm text-neutral-600 dark:text-neutral-400">{info.description}</p>
                       </div>
                     </div>
                   </a>
@@ -276,12 +276,12 @@ export default function Contact() {
                         {info.icon}
                       </motion.div>
                       <div className="flex-1">
-                        <h4 className="font-bold text-neutral-900 text-lg mb-1">{info.title}</h4>
-                        <p className="text-neutral-800 font-semibold mb-1">{info.value}</p>
+                        <h4 className="font-bold text-neutral-900 dark:text-white text-lg mb-1">{info.title}</h4>
+                        <p className="text-neutral-800 dark:text-neutral-200 font-semibold mb-1">{info.value}</p>
                         {info.title === "Business Hours" && (
-                          <p className="text-neutral-700 font-medium mb-1">Sat: 10:00 AM - 2:00 PM</p>
+                          <p className="text-neutral-700 dark:text-neutral-300 font-medium mb-1">Sat: 10:00 AM - 2:00 PM</p>
                         )}
-                        <p className="text-sm text-neutral-600">{info.description}</p>
+                        <p className="text-sm text-neutral-600 dark:text-neutral-400">{info.description}</p>
                       </div>
                     </div>
                   </div>

@@ -77,7 +77,8 @@
   .btn-premium {
     @apply relative inline-flex items-center justify-center px-8 py-4 font-semibold text-white
            bg-gradient-to-r from-coral-500 to-coral-600 hover:from-coral-600 hover:to-coral-700
-           rounded-xl shadow-luxury hover:shadow-glow-coral
+           dark:from-coral-400 dark:to-coral-500 dark:hover:from-coral-300 dark:hover:to-coral-400
+           rounded-xl shadow-luxury hover:shadow-glow-coral dark:shadow-glow-coral
            transition-all duration-300 ease-out transform hover:scale-105
            border-0 overflow-hidden;
   }
@@ -95,9 +96,10 @@
   
   .btn-glass {
     @apply relative px-8 py-4 font-semibold text-coral-700 bg-white/80 backdrop-blur-md
-           border border-white/20 rounded-xl shadow-glass hover:shadow-luxury
+           dark:text-coral-300 dark:bg-gray-800/80 
+           border border-white/20 dark:border-gray-700/50 rounded-xl shadow-glass hover:shadow-luxury
            transition-all duration-300 ease-out transform hover:scale-105
-           hover:bg-white/90 hover:border-white/30;
+           hover:bg-white/90 hover:border-white/30 dark:hover:bg-gray-700/80;
   }
   
   .btn-outline {
@@ -109,7 +111,8 @@
   /* Card Components */
   .card-premium {
     @apply relative p-8 bg-white/95 backdrop-blur-sm border border-white/20
-           rounded-3xl shadow-luxury hover:shadow-premium
+           dark:bg-gray-800/95 dark:border-gray-700/50
+           rounded-3xl shadow-luxury hover:shadow-premium dark:shadow-glow-coral
            transition-all duration-500 ease-out transform hover:-translate-y-2
            overflow-hidden;
   }
@@ -134,9 +137,10 @@
 
 
   .card-standard {
-    @apply p-6 border border-neutral-200 rounded-xl shadow-elegant
-           hover:shadow-lg transition-shadow duration-300 ease-out relative overflow-hidden;
-    background: linear-gradient(135deg, #fff 60%, #ffe5e9 100%);
+    @apply p-6 border border-neutral-200 dark:border-gray-700 rounded-xl shadow-elegant
+           dark:shadow-glow-coral hover:shadow-lg dark:hover:shadow-glow-coral 
+           transition-shadow duration-300 ease-out relative overflow-hidden
+           bg-white dark:bg-gray-800;
   }
  
   
@@ -169,6 +173,14 @@
       radial-gradient(at 80% 50%, rgba(236, 72, 153, 0.1) 0px, transparent 50%);
   }
   
+  .dark .bg-mesh {
+    background-image: 
+      radial-gradient(at 40% 20%, rgba(238, 107, 107, 0.2) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, rgba(236, 72, 153, 0.15) 0px, transparent 50%),
+      radial-gradient(at 0% 50%, rgba(238, 107, 107, 0.15) 0px, transparent 50%),
+      radial-gradient(at 80% 50%, rgba(236, 72, 153, 0.2) 0px, transparent 50%);
+  }
+  
   .bg-dots {
     background-image: radial-gradient(circle, rgba(238, 107, 107, 0.1) 1px, transparent 1px);
     background-size: 20px 20px;
@@ -183,6 +195,10 @@
   
   .warm-gradient-bg {
     background: linear-gradient(135deg, #fefefe 0%, #f8fafc 50%, #f1f5f9 100%);
+  }
+  
+  .dark .warm-gradient-bg {
+    background: linear-gradient(135deg, #1f2937 0%, #111827 50%, #0f172a 100%);
   }
 
   /* Standardized Layout Components */
@@ -305,9 +321,9 @@
 
   /* Form Components */
   .input-premium {
-    @apply w-full px-4 py-3 bg-white/90 backdrop-blur-sm border border-neutral-200
-           rounded-xl shadow-elegant focus:outline-none focus:ring-2 focus:ring-coral-500
-           focus:border-transparent transition-all duration-300;
+    @apply w-full px-4 py-3 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border border-neutral-200 dark:border-gray-600
+           rounded-xl shadow-elegant focus:outline-none focus:ring-2 focus:ring-coral-500 dark:focus:ring-coral-400
+           focus:border-transparent transition-all duration-300 text-gray-900 dark:text-white;
     pointer-events: auto !important;
     user-select: auto !important;
     -webkit-user-select: auto !important;

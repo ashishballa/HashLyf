@@ -188,7 +188,7 @@ export default function FAQ() {
             </motion.div>
             
             <motion.h2 
-              className="heading-display text-neutral-900 mb-6"
+              className="heading-display text-neutral-900 dark:text-white mb-6"
               variants={fadeUp}
             >
               Got <span className="text-gradient-coral">Questions?</span>
@@ -196,7 +196,7 @@ export default function FAQ() {
             </motion.h2>
             
             <motion.p 
-              className="text-body-large text-neutral-600 max-w-4xl mx-auto"
+              className="text-body-large text-neutral-600 dark:text-neutral-300 max-w-4xl mx-auto"
               variants={fadeUp}
             >
               Comprehensive answers to Ontario's most frequently asked life insurance questions. 
@@ -212,7 +212,7 @@ export default function FAQ() {
           initial="initial"
           animate={inView ? "animate" : "initial"}
         >
-          <h3 className="heading-medium text-neutral-900 mb-6 flex items-center">
+          <h3 className="heading-medium text-neutral-900 dark:text-white mb-6 flex items-center">
             <motion.div
               animate={{ rotate: [0, 10, -10, 0] }}
               transition={{ duration: 2, repeat: Infinity }}
@@ -238,10 +238,10 @@ export default function FAQ() {
                 whileTap={{ scale: 0.98 }}
                 style={{ pointerEvents: 'auto', cursor: 'pointer' }}
               >
-                <p className="text-neutral-800 font-medium group-hover:text-coral-600 transition-colors">
+                <p className="text-neutral-800 dark:text-neutral-200 font-medium group-hover:text-coral-600 dark:group-hover:text-coral-400 transition-colors">
                   {faq.question}
                 </p>
-                <p className="text-sm text-neutral-500 mt-2 flex items-center">
+                <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-2 flex items-center">
                   <span className="w-2 h-2 bg-coral-400 rounded-full mr-2"></span>
                   {faq.category}
                 </p>
@@ -277,7 +277,7 @@ export default function FAQ() {
           <div className="flex justify-between items-center">
             <motion.button
               onClick={() => setShowFilters(!showFilters)}
-              className="flex items-center space-x-2 text-neutral-600 hover:text-coral-600 transition-colors font-medium"
+              className="flex items-center space-x-2 text-neutral-600 dark:text-neutral-400 hover:text-coral-600 dark:hover:text-coral-400 transition-colors font-medium"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -319,7 +319,7 @@ export default function FAQ() {
                 transition={{ duration: 0.3 }}
               >
                 <div>
-                  <label className="block text-sm font-semibold text-neutral-700 mb-2">Category</label>
+                  <label className="block text-sm font-semibold text-neutral-700 dark:text-neutral-300 mb-2">Category</label>
                   <select
                     value={selectedCategory}
                     onChange={(e) => {
@@ -337,7 +337,7 @@ export default function FAQ() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-neutral-700 mb-2">Subcategory</label>
+                  <label className="block text-sm font-semibold text-neutral-700 dark:text-neutral-300 mb-2">Subcategory</label>
                   <select
                     value={selectedSubcategory}
                     onChange={(e) => setSelectedSubcategory(e.target.value)}
@@ -353,7 +353,7 @@ export default function FAQ() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-neutral-700 mb-2">Age Group</label>
+                  <label className="block text-sm font-semibold text-neutral-700 dark:text-neutral-300 mb-2">Age Group</label>
                   <select
                     value={selectedAgeGroup}
                     onChange={(e) => setSelectedAgeGroup(e.target.value)}
@@ -379,7 +379,7 @@ export default function FAQ() {
           initial="initial"
           animate={inView ? "animate" : "initial"}
         >
-          <p className="text-neutral-600 font-medium">
+          <p className="text-neutral-600 dark:text-neutral-400 font-medium">
             Showing <span className="text-coral-600 font-bold">{filteredFAQs.length}</span> of <span className="font-bold">{faqData.length}</span> questions
             {searchQuery && <span className="font-semibold"> for "<span className="text-coral-600">{searchQuery}</span>"</span>}
           </p>
@@ -436,7 +436,7 @@ export default function FAQ() {
                   <AnimatePresence>
                     {expandedItems.has(faq.id) && (
                       <motion.div 
-                        className="px-6 pb-6 text-neutral-700 leading-relaxed"
+                        className="px-6 pb-6 text-neutral-700 dark:text-neutral-300 leading-relaxed"
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
@@ -475,8 +475,8 @@ export default function FAQ() {
               >
                 <BookOpen className="mx-auto text-neutral-400 mb-4" size={48} />
               </motion.div>
-              <h3 className="text-xl font-semibold text-neutral-700 mb-2">No questions found</h3>
-              <p className="text-neutral-500 mb-6">
+              <h3 className="text-xl font-semibold text-neutral-700 dark:text-neutral-300 mb-2">No questions found</h3>
+              <p className="text-neutral-500 dark:text-neutral-400 mb-6">
                 Try adjusting your search terms or filters to find what you're looking for.
               </p>
               <motion.button

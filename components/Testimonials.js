@@ -35,7 +35,7 @@ export default function Testimonials() {
   ]
 
   return (
-    <section id="testimonials" className="section-premium bg-gradient-to-b from-white to-gray-50">
+    <section id="testimonials" className="section-premium bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
       {/* Background decoration */}
       <div className="decoration-blob-medium decoration-top-right opacity-30"></div>
       <div className="decoration-blob-large decoration-bottom-left opacity-30"></div>
@@ -46,11 +46,11 @@ export default function Testimonials() {
             <Heart size={16} />
             <span>Client Testimonials</span>
           </div>
-          <h2 className="heading-display text-gray-900 mb-6">
+          <h2 className="heading-display text-gray-900 dark:text-white mb-6">
             What Our Clients
             <span className="gradient-text block">Say About Us</span>
           </h2>
-          <p className="text-body-large text-gray-600 max-w-3xl mx-auto">
+          <p className="text-body-large text-gray-600 dark:text-neutral-300 max-w-3xl mx-auto">
             Real families sharing their experiences with our professional insurance services. 
             Their trust and satisfaction drive our commitment to excellence.
           </p>
@@ -78,7 +78,7 @@ export default function Testimonials() {
                 </div>
                 
                 {/* Testimonial text */}
-                <blockquote className="text-gray-700 mb-8 text-lg leading-relaxed italic relative z-10">
+                <blockquote className="text-gray-700 dark:text-neutral-300 mb-8 text-lg leading-relaxed italic relative z-10">
                   "{testimonial.text}"
                 </blockquote>
                 
@@ -88,9 +88,9 @@ export default function Testimonials() {
                     <div>
                       <div className="flex items-center space-x-2 mb-1">
                         <CheckCircle className="text-green-600" size={16} />
-                        <span className="text-green-800 font-semibold text-sm">{testimonial.insuranceType}</span>
+                        <span className="text-green-800 dark:text-green-300 font-semibold text-sm">{testimonial.insuranceType}</span>
                       </div>
-                      <div className="text-green-700 font-bold text-lg">{testimonial.amount}</div>
+                      <div className="text-green-700 dark:text-green-400 font-bold text-lg">{testimonial.amount}</div>
                     </div>
                     <div className="text-green-600 text-2xl">✓</div>
                   </div>
@@ -102,8 +102,8 @@ export default function Testimonials() {
                     {testimonial.avatar}
                   </div>
                   <div>
-                    <div className="font-bold text-gray-900 text-lg">{testimonial.name}</div>
-                    <div className="text-gray-600 text-sm">{testimonial.location}</div>
+                    <div className="font-bold text-gray-900 dark:text-white text-lg">{testimonial.name}</div>
+                    <div className="text-gray-600 dark:text-neutral-400 text-sm">{testimonial.location}</div>
                   </div>
                 </div>
                 
@@ -116,9 +116,9 @@ export default function Testimonials() {
 
         {/* Call to action */}
         <div className="text-center mt-16">
-          <div className="glass-effect rounded-3xl p-8 shadow-2xl border max-w-2xl mx-auto">
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">Join Our Satisfied Clients</h3>
-            <p className="text-gray-600 mb-6 text-lg">
+          <div className="glass-effect rounded-3xl p-8 shadow-2xl border dark:border-gray-600 dark:bg-gray-800/50 max-w-2xl mx-auto">
+            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Join Our Satisfied Clients</h3>
+            <p className="text-gray-600 dark:text-neutral-300 mb-6 text-lg">
               Ready to experience the same level of professional service and personalized attention? 
               Get your free insurance quote today.
             </p>
@@ -133,19 +133,19 @@ export default function Testimonials() {
         <div className="responsive-grid-stats mt-16 text-center">
           <div className="group">
             <div className="text-4xl font-bold text-primary-600 mb-2 group-hover:scale-110 transition-transform">50+</div>
-            <div className="text-gray-600 font-medium">Happy Families</div>
+            <div className="text-gray-600 dark:text-neutral-400 font-medium">Happy Families</div>
           </div>
           <div className="group">
             <div className="text-4xl font-bold text-accent-600 mb-2 group-hover:scale-110 transition-transform">$2M+</div>
-            <div className="text-gray-600 font-medium">Coverage Secured</div>
+            <div className="text-gray-600 dark:text-neutral-400 font-medium">Coverage Secured</div>
           </div>
           <div className="group">
             <div className="text-4xl font-bold text-accent-600 mb-2 group-hover:scale-110 transition-transform">24h</div>
-            <div className="text-gray-600 font-medium">Response Time</div>
+            <div className="text-gray-600 dark:text-neutral-400 font-medium">Response Time</div>
           </div>
           <div className="group">
             <div className="text-4xl font-bold text-green-600 mb-2 group-hover:scale-110 transition-transform">100%</div>
-            <div className="text-gray-600 font-medium">Satisfaction</div>
+            <div className="text-gray-600 dark:text-neutral-400 font-medium">Satisfaction</div>
           </div>
         </div>
       </div>

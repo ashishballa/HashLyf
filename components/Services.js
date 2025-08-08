@@ -45,18 +45,18 @@ export default function Services() {
   ]
 
   return (
-    <section id="services" className="section-premium warm-gradient-bg">
+    <section id="services" className="section-premium warm-gradient-bg dark:bg-gray-900">
       <div className="container-premium">
         <div className="text-center mb-20">
           <div className="badge-premium mb-6">
             <Shield size={16} />
             <span>Professional Services</span>
           </div>
-          <h2 className="heading-display text-gray-900 mb-6">
+          <h2 className="heading-display text-gray-900 dark:text-white mb-6">
             Comprehensive Insurance
             <span className="gradient-text block">Solutions</span>
           </h2>
-          <p className="text-body-large text-gray-600 max-w-4xl mx-auto">
+          <p className="text-body-large text-gray-600 dark:text-gray-300 max-w-4xl mx-auto">
             As a licensed LLQP certified insurance broker with WhiteHorse Financial, I provide comprehensive insurance solutions across Ontario. From affordable term life insurance and permanent whole life coverage to specialized travel insurance for visiting family members, I compare quotes from multiple insurance companies and providers to find you the best possible coverage, competitive rates, and personalized protection plans tailored to safeguard what matters most to you and your loved ones.
           </p>
         </div>
@@ -70,18 +70,18 @@ export default function Services() {
                   {service.icon}
                 </div>
                 
-                <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-primary-600 transition-colors">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
                   {service.title}
                 </h3>
                 
-                <p className="text-gray-600 mb-6 leading-relaxed">
+                <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
                   {service.description}
                 </p>
                 
                 <ul className="space-y-3 mb-8">
                   {service.features.map((feature, fIndex) => (
-                    <li key={fIndex} className="flex items-center text-gray-700">
-                      <CheckCircle className="text-green-500 mr-3 flex-shrink-0" size={18} />
+                    <li key={fIndex} className="flex items-center text-gray-700 dark:text-gray-300">
+                      <CheckCircle className="text-green-500 dark:text-green-400 mr-3 flex-shrink-0" size={18} />
                       <span className="text-sm font-medium">{feature}</span>
                     </li>
                   ))}

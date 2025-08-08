@@ -124,7 +124,7 @@ export default function ContactModal({ isOpen, onClose, autoOpen = false }) {
           
           {/* Modal Content */}
           <motion.div
-            className="relative bg-white rounded-3xl shadow-premium max-w-2xl w-full max-h-[90vh] overflow-y-auto modal-content"
+            className="relative bg-white dark:bg-gray-800 rounded-3xl shadow-premium max-w-2xl w-full max-h-[90vh] overflow-y-auto modal-content"
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -136,11 +136,11 @@ export default function ContactModal({ isOpen, onClose, autoOpen = false }) {
             <div className="relative p-8 pb-0">
               <motion.button
                 onClick={handleClose}
-                className="absolute top-6 right-6 p-2 rounded-full hover:bg-gray-100 transition-colors duration-200 z-10"
+                className="absolute top-6 right-6 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 z-10"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <X size={24} className="text-gray-500" />
+                <X size={24} className="text-gray-500 dark:text-gray-400" />
               </motion.button>
               
               <div className="text-center mb-8">
@@ -153,17 +153,17 @@ export default function ContactModal({ isOpen, onClose, autoOpen = false }) {
                   <span>FREE QUOTE REQUEST</span>
                 </motion.div>
                 
-                <h2 className="heading-large text-neutral-900 mb-4">
+                <h2 className="heading-large text-neutral-900 dark:text-white mb-4">
                   Get Your <span className="text-gradient-coral">FREE</span> Insurance
                   <span className="text-gradient-premium block animate-gradient">Quote in 2 Minutes</span>
                 </h2>
                 
-                <p className="text-body text-neutral-600 mb-6">
+                <p className="text-body text-neutral-600 dark:text-neutral-300 mb-6">
                   🚀 <strong>No obligations.</strong> Get a personalized quote from an LLQP certified professional. 
                   I'll respond within 24 hours with coverage options tailored to your family's needs and budget.
                 </p>
                 
-                <div className="flex flex-wrap justify-center items-center gap-4 text-sm text-neutral-600">
+                <div className="flex flex-wrap justify-center items-center gap-4 text-sm text-neutral-600 dark:text-neutral-400">
                   {[
                     { text: "100% Free", icon: CheckCircle },
                     { text: "No Pressure", icon: CheckCircle },
@@ -190,7 +190,7 @@ export default function ContactModal({ isOpen, onClose, autoOpen = false }) {
                   whileFocus={{ scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <label className="block text-sm font-semibold text-neutral-700 mb-3">
+                  <label className="block text-sm font-semibold text-neutral-700 dark:text-neutral-300 mb-3">
                     Are you male or female? *
                   </label>
                   <div className="grid grid-cols-2 gap-4">
@@ -198,8 +198,8 @@ export default function ContactModal({ isOpen, onClose, autoOpen = false }) {
                       className={cn(
                         "flex items-center justify-center p-4 rounded-xl border-2 cursor-pointer transition-all",
                         formData.gender === 'male' 
-                          ? "border-coral-500 bg-coral-50 text-coral-700" 
-                          : "border-neutral-200 hover:border-coral-300"
+                          ? "border-coral-500 bg-coral-50 text-coral-700 dark:bg-coral-900/20 dark:text-coral-300" 
+                          : "border-neutral-200 dark:border-gray-600 hover:border-coral-300 dark:hover:border-coral-400"
                       )}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
@@ -215,14 +215,14 @@ export default function ContactModal({ isOpen, onClose, autoOpen = false }) {
                         required
                         style={{ pointerEvents: 'auto' }}
                       />
-                      <span className="font-medium">Male</span>
+                      <span className="font-medium dark:text-neutral-200">Male</span>
                     </motion.label>
                     <motion.label 
                       className={cn(
                         "flex items-center justify-center p-4 rounded-xl border-2 cursor-pointer transition-all",
                         formData.gender === 'female' 
-                          ? "border-coral-500 bg-coral-50 text-coral-700" 
-                          : "border-neutral-200 hover:border-coral-300"
+                          ? "border-coral-500 bg-coral-50 text-coral-700 dark:bg-coral-900/20 dark:text-coral-300" 
+                          : "border-neutral-200 dark:border-gray-600 hover:border-coral-300 dark:hover:border-coral-400"
                       )}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
@@ -238,7 +238,7 @@ export default function ContactModal({ isOpen, onClose, autoOpen = false }) {
                         required
                         style={{ pointerEvents: 'auto' }}
                       />
-                      <span className="font-medium">Female</span>
+                      <span className="font-medium dark:text-neutral-200">Female</span>
                     </motion.label>
                   </div>
                 </motion.div>
@@ -248,7 +248,7 @@ export default function ContactModal({ isOpen, onClose, autoOpen = false }) {
                   whileFocus={{ scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <label className="block text-sm font-semibold text-neutral-700 mb-3">
+                  <label className="block text-sm font-semibold text-neutral-700 dark:text-neutral-300 mb-3">
                     Are you a smoker? *
                   </label>
                   <div className="grid grid-cols-2 gap-4">
@@ -256,8 +256,8 @@ export default function ContactModal({ isOpen, onClose, autoOpen = false }) {
                       className={cn(
                         "flex items-center justify-center p-4 rounded-xl border-2 cursor-pointer transition-all",
                         formData.smoker === 'no' 
-                          ? "border-coral-500 bg-coral-50 text-coral-700" 
-                          : "border-neutral-200 hover:border-coral-300"
+                          ? "border-coral-500 bg-coral-50 text-coral-700 dark:bg-coral-900/20 dark:text-coral-300" 
+                          : "border-neutral-200 dark:border-gray-600 hover:border-coral-300 dark:hover:border-coral-400"
                       )}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
@@ -273,14 +273,14 @@ export default function ContactModal({ isOpen, onClose, autoOpen = false }) {
                         required
                         style={{ pointerEvents: 'auto' }}
                       />
-                      <span className="font-medium">No</span>
+                      <span className="font-medium dark:text-neutral-200">No</span>
                     </motion.label>
                     <motion.label 
                       className={cn(
                         "flex items-center justify-center p-4 rounded-xl border-2 cursor-pointer transition-all",
                         formData.smoker === 'yes' 
-                          ? "border-coral-500 bg-coral-50 text-coral-700" 
-                          : "border-neutral-200 hover:border-coral-300"
+                          ? "border-coral-500 bg-coral-50 text-coral-700 dark:bg-coral-900/20 dark:text-coral-300" 
+                          : "border-neutral-200 dark:border-gray-600 hover:border-coral-300 dark:hover:border-coral-400"
                       )}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
@@ -296,7 +296,7 @@ export default function ContactModal({ isOpen, onClose, autoOpen = false }) {
                         required
                         style={{ pointerEvents: 'auto' }}
                       />
-                      <span className="font-medium">Yes</span>
+                      <span className="font-medium dark:text-neutral-200">Yes</span>
                     </motion.label>
                   </div>
                 </motion.div>
@@ -306,12 +306,12 @@ export default function ContactModal({ isOpen, onClose, autoOpen = false }) {
                   whileFocus={{ scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <label className="block text-sm font-semibold text-neutral-700 mb-3">
+                  <label className="block text-sm font-semibold text-neutral-700 dark:text-neutral-300 mb-3">
                     What is your date of birth? *
                   </label>
                   <div className="grid grid-cols-3 gap-4">
                     <div>
-                      <label className="block text-xs text-neutral-500 mb-2">Year of birth</label>
+                      <label className="block text-xs text-neutral-500 dark:text-neutral-400 mb-2">Year of birth</label>
                       <input
                         type="number"
                         name="birthYear"
@@ -328,7 +328,7 @@ export default function ContactModal({ isOpen, onClose, autoOpen = false }) {
                       />
                     </div>
                     <div>
-                      <label className="block text-xs text-neutral-500 mb-2">Month of birth</label>
+                      <label className="block text-xs text-neutral-500 dark:text-neutral-400 mb-2">Month of birth</label>
                       <select
                         name="birthMonth"
                         value={formData.birthMonth}
@@ -355,7 +355,7 @@ export default function ContactModal({ isOpen, onClose, autoOpen = false }) {
                       </select>
                     </div>
                     <div>
-                      <label className="block text-xs text-neutral-500 mb-2">Day of birth</label>
+                      <label className="block text-xs text-neutral-500 dark:text-neutral-400 mb-2">Day of birth</label>
                       <input
                         type="number"
                         name="birthDay"
@@ -379,11 +379,11 @@ export default function ContactModal({ isOpen, onClose, autoOpen = false }) {
                   whileFocus={{ scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <label className="block text-sm font-semibold text-neutral-700 mb-3">
+                  <label className="block text-sm font-semibold text-neutral-700 dark:text-neutral-300 mb-3">
                     What level of coverage would you like? *
                   </label>
                   {!formData.birthYear ? (
-                    <p className="text-sm text-neutral-500 italic">
+                    <p className="text-sm text-neutral-500 dark:text-neutral-400 italic">
                       Please enter your date of birth before choosing a coverage level.
                     </p>
                   ) : (
@@ -416,7 +416,7 @@ export default function ContactModal({ isOpen, onClose, autoOpen = false }) {
                     whileFocus={{ scale: 1.02 }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
-                    <label className="block text-sm font-semibold text-neutral-700 mb-3">
+                    <label className="block text-sm font-semibold text-neutral-700 dark:text-neutral-300 mb-3">
                       First name *
                     </label>
                     <div className="relative group">
@@ -447,7 +447,7 @@ export default function ContactModal({ isOpen, onClose, autoOpen = false }) {
                     whileFocus={{ scale: 1.02 }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
-                    <label className="block text-sm font-semibold text-neutral-700 mb-3">
+                    <label className="block text-sm font-semibold text-neutral-700 dark:text-neutral-300 mb-3">
                       Last name *
                     </label>
                     <div className="relative group">
@@ -481,7 +481,7 @@ export default function ContactModal({ isOpen, onClose, autoOpen = false }) {
                     whileFocus={{ scale: 1.02 }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
-                    <label className="block text-sm font-semibold text-neutral-700 mb-3">
+                    <label className="block text-sm font-semibold text-neutral-700 dark:text-neutral-300 mb-3">
                       Contact number *
                     </label>
                     <div className="relative group">
@@ -512,7 +512,7 @@ export default function ContactModal({ isOpen, onClose, autoOpen = false }) {
                     whileFocus={{ scale: 1.02 }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
-                    <label className="block text-sm font-semibold text-neutral-700 mb-3">
+                    <label className="block text-sm font-semibold text-neutral-700 dark:text-neutral-300 mb-3">
                       Email address *
                     </label>
                     <div className="relative group">

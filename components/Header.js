@@ -17,13 +17,33 @@ export default function Header({ openModal }) {
       setIsScrolled(window.scrollY > 50)
     }
     
+    // Initialize dark mode from localStorage
+    const savedTheme = localStorage.getItem('theme')
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    
+    if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+      setIsDark(true)
+      document.documentElement.classList.add('dark')
+    } else {
+      setIsDark(false)
+      document.documentElement.classList.remove('dark')
+    }
+    
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   const toggleDarkMode = () => {
-    setIsDark(!isDark)
-    document.documentElement.classList.toggle('dark')
+    const newDarkMode = !isDark
+    setIsDark(newDarkMode)
+    
+    if (newDarkMode) {
+      document.documentElement.classList.add('dark')
+      localStorage.setItem('theme', 'dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+      localStorage.setItem('theme', 'light')
+    }
   }
 
   const navItems = [
@@ -40,8 +60,8 @@ export default function Header({ openModal }) {
       className={cn(
         "fixed w-full top-0 z-[100] transition-all duration-500",
         isScrolled 
-          ? "glass-navbar shadow-premium backdrop-blur-lg" 
-          : "bg-white/95 backdrop-blur-sm shadow-elegant"
+          ? "glass-navbar shadow-premium backdrop-blur-lg dark:bg-gray-900/80 dark:border-gray-700" 
+          : "bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-elegant dark:shadow-glow-coral"
       )}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -52,7 +72,7 @@ export default function Header({ openModal }) {
         <motion.div 
           className={cn(
             "hidden md:flex justify-between items-center py-3 text-sm border-b transition-all duration-500",
-            isScrolled ? "border-white/20" : "border-neutral-200"
+            isScrolled ? "border-white/20 dark:border-gray-700/50" : "border-neutral-200 dark:border-gray-700"
           )}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -65,29 +85,30 @@ export default function Header({ openModal }) {
               whileHover={{ scale: 1.05 }}
             >
               <Mail size={16} className="text-coral-500 group-hover:scale-110 transition-transform" />
-              <span className="font-medium text-neutral-700 hover:text-coral-600 transition-colors">
+              <span className="font-medium text-neutral-700 dark:text-neutral-300 hover:text-coral-600 dark:hover:text-coral-400 transition-colors">
                 harsha.whf@gmail.com
               </span>
             </motion.a>
           </div>
           
           <div className="flex items-center space-x-6">
-            <div className="flex items-center space-x-2 text-neutral-600">
-              <Shield size={16} className="text-coral-600" />
+            <div className="flex items-center space-x-2 text-neutral-600 dark:text-neutral-400">
+              <Shield size={16} className="text-coral-600 dark:text-coral-400" />
               <span className="font-semibold">LLQP Certified • Licensed in Ontario</span>
             </div>
             
             {/* Dark mode toggle */}
             <motion.button
               onClick={toggleDarkMode}
-              className="p-2 rounded-lg hover:bg-coral-50 transition-colors"
+              className="p-2 rounded-lg hover:bg-coral-50 dark:hover:bg-gray-700 transition-colors"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
+              title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
             >
               {isDark ? (
-                <Sun size={18} className="text-coral-500" />
+                <Sun size={18} className="text-coral-500 dark:text-coral-400" />
               ) : (
-                <Moon size={18} className="text-coral-500" />
+                <Moon size={18} className="text-coral-500 dark:text-coral-400" />
               )}
             </motion.button>
           </div>
@@ -119,9 +140,9 @@ export default function Header({ openModal }) {
             
             <div className={cn(
               "text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold transition-colors duration-300 flex-shrink-0",
-              isScrolled ? "text-neutral-800" : "text-neutral-900"
+              isScrolled ? "text-neutral-800 dark:text-neutral-200" : "text-neutral-900 dark:text-white"
             )}>
-              <span className="text-coral-600 font-bold">Hash</span>Life Insurers
+              <span className="text-coral-600 dark:text-coral-400 font-bold">Hash</span>Life Insurers
             </div>
           </motion.div>
 
@@ -136,7 +157,7 @@ export default function Header({ openModal }) {
               <motion.a
                 key={item.name}
                 href={item.href}
-                className="relative font-semibold transition-all duration-300 hover:text-coral-600 group text-neutral-700 py-2"
+                className="relative font-semibold transition-all duration-300 hover:text-coral-600 dark:hover:text-coral-400 group text-neutral-700 dark:text-neutral-300 py-2"
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 + index * 0.1 }}
@@ -178,7 +199,7 @@ export default function Header({ openModal }) {
                 "lg:hidden p-3 rounded-xl transition-all duration-300 shadow-elegant",
                 isOpen 
                   ? "bg-coral-500 text-white shadow-glow-coral" 
-                  : "hover:bg-coral-50 text-neutral-700 hover:shadow-luxury"
+                  : "hover:bg-coral-50 dark:hover:bg-gray-700 text-neutral-700 dark:text-neutral-300 hover:shadow-luxury"
               )}
               onClick={() => setIsOpen(!isOpen)}
               whileHover={{ scale: 1.05 }}
@@ -232,7 +253,7 @@ export default function Header({ openModal }) {
                     <motion.a
                       key={item.name}
                       href={item.href}
-                      className="py-4 px-6 text-neutral-700 hover:text-coral-600 hover:bg-coral-50 rounded-xl transition-all duration-300 font-semibold group"
+                      className="py-4 px-6 text-neutral-700 dark:text-neutral-300 hover:text-coral-600 dark:hover:text-coral-400 hover:bg-coral-50 dark:hover:bg-gray-700 rounded-xl transition-all duration-300 font-semibold group"
                       onClick={() => setIsOpen(false)}
                       initial={{ x: -50, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
