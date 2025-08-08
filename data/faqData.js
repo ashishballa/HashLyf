@@ -103,6 +103,48 @@ export const faqData = [
     keywords: ["honesty", "disclosure", "medical history", "claim denial"]
   },
 
+  // TRAVEL INSURANCE - Parents & Grandparents
+  {
+    id: 201,
+    question: "Do visiting parents and grandparents need travel insurance in Canada?",
+    answer: "Yes, travel insurance is mandatory for Super Visa applicants and highly recommended for all visitors as provincial health plans don't cover visitors.",
+    category: "Travel Insurance",
+    subcategory: "Parents & Grandparents",
+    tags: ["parents", "grandparents", "travel insurance", "super visa", "mandatory"],
+    ageGroup: "55+",
+    keywords: ["visiting", "canada", "coverage", "visitors", "health plan"]
+  },
+  {
+    id: 202,
+    question: "What is Super Visa insurance and how much coverage is required?",
+    answer: "Super Visa insurance is mandatory travel insurance for parents/grandparents visiting Canada. Minimum $100,000 coverage for healthcare, hospitalization, and repatriation is required.",
+    category: "Travel Insurance",
+    subcategory: "Parents & Grandparents",
+    tags: ["super visa", "mandatory", "100000", "healthcare", "hospitalization", "repatriation"],
+    ageGroup: "55+",
+    keywords: ["minimum coverage", "required", "government", "immigration"]
+  },
+  {
+    id: 203,
+    question: "Can parents with pre-existing medical conditions get travel insurance?",
+    answer: "Yes, many insurers offer coverage for pre-existing conditions, though premiums may be higher. Full disclosure of medical history is essential.",
+    category: "Travel Insurance",
+    subcategory: "Parents & Grandparents",
+    tags: ["pre-existing conditions", "medical history", "coverage", "premiums", "disclosure"],
+    ageGroup: "55+",
+    keywords: ["health conditions", "diabetes", "heart", "medication", "chronic"]
+  },
+  {
+    id: 204,
+    question: "How long can parents stay in Canada with travel insurance?",
+    answer: "Travel insurance can cover visits up to 365 days, with some policies offering extensions. Super Visa allows up to 2 years per visit.",
+    category: "Travel Insurance",
+    subcategory: "Parents & Grandparents",
+    tags: ["duration", "365 days", "extensions", "super visa", "2 years"],
+    ageGroup: "55+",
+    keywords: ["stay length", "visit duration", "long term", "extended stay"]
+  },
+
   // FINAL CONSIDERATIONS
   {
     id: 200,

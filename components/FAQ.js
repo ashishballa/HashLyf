@@ -177,7 +177,7 @@ export default function FAQ() {
                   setSearchQuery(faq.question)
                   setExpandedItems(new Set([faq.id]))
                 }}
-                className="card-premium text-left hover:shadow-glow-coral transition-all duration-300 group cursor-pointer"
+                className="card-standard text-left hover:shadow-glow-coral transition-all duration-300 group cursor-pointer"
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ delay: index * 0.1 }}
@@ -199,7 +199,7 @@ export default function FAQ() {
 
         {/* Premium Search and Filters Card */}
         <motion.div 
-          className="card-premium bg-gradient-to-br from-white via-coral-50/30 to-accent-50/30 shadow-premium border-0 mb-8"
+          className="card-standard bg-gradient-to-br from-white via-coral-50/30 to-accent-50/30 shadow-premium border-0 mb-8"
           variants={fadeUp}
           initial="initial"
           animate={inView ? "animate" : "initial"}
@@ -338,7 +338,7 @@ export default function FAQ() {
             filteredFAQs.map((faq, index) => (
               <motion.div
                 key={faq.id}
-                className="card-premium overflow-hidden hover:shadow-glow-coral transition-all duration-300 faq-item"
+                className="card-standard overflow-hidden hover:shadow-glow-coral transition-all duration-300 faq-item"
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ delay: index * 0.05 }}

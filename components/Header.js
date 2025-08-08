@@ -27,7 +27,7 @@ export default function Header({ openModal }) {
   }
 
   const navItems = [
-    { name: 'Home', href: '#home' },
+    
     { name: 'Contact', href: '#contact' },
     { name: 'Services', href: '#services' },
     { name: 'About', href: '#about' },

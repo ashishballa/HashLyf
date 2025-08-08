@@ -1,4 +1,4 @@
-import { Shield, Heart, Umbrella, FileText, CheckCircle, ArrowRight } from 'lucide-react'
+import { Shield, Heart, Umbrella, FileText, CheckCircle, ArrowRight, Plane } from 'lucide-react'
 
 export default function Services() {
   const services = [
@@ -25,6 +25,14 @@ export default function Services() {
       features: ["Cancer Coverage", "Heart Attack Protection", "Stroke Benefits", "Return of Premium Options"],
       gradient: "from-success-600 to-success-700",
       bgGradient: "from-success-50 to-success-100"
+    },
+    {
+      icon: <Plane className="text-white" size={48} />,
+      title: "Parents & Grandparents Travel Insurance",
+      description: "Specialized travel insurance coverage for visiting parents and grandparents, including Super Visa requirements and extended stay protection.",
+      features: ["Super Visa Compliance", "Up to $100,000 Coverage", "Pre-existing Conditions", "Extended Stay Options"],
+      gradient: "from-blue-600 to-blue-700",
+      bgGradient: "from-blue-50 to-blue-100"
     },
     {
       icon: <FileText className="text-white" size={48} />,
