@@ -3,7 +3,13 @@ import { Inter } from 'next/font/google'
 
 const inter = Inter({ subsets: ['latin'] })
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+}
+
 export const metadata = {
+  metadataBase: new URL('https://hashlife-insurance.com'),
   title: 'Best Life Insurance Agent Ontario | LLQP Certified | Compare Quotes | HashLife Insurers',
   description: 'Looking for affordable life insurance in Ontario? Local LLQP certified agent compares quotes from 15+ insurance companies. Specializing in term life insurance, whole life insurance, travel insurance for parents visiting Canada, Super Visa insurance, funeral expense coverage. Get free quotes in Toronto, Ottawa, Hamilton, Mississauga. Licensed by FSRAO with WhiteHorse Financial.',
   keywords: 'life insurance Ontario, LLQP certified agent Ontario, travel insurance parents grandparents, funeral expense insurance, local insurance agent Toronto, insurance quotes Ontario, WhiteHorse Financial, super visa insurance Ontario, term life insurance Toronto, whole life insurance Ottawa, visitor insurance Canada, insurance broker Hamilton, life insurance advisor Mississauga, affordable life insurance Ontario, best life insurance rates Canada, family life insurance protection, critical illness insurance Ontario, disability insurance coverage, insurance needs assessment, life insurance comparison Ontario, insurance agent near me, licensed insurance professional, FSRAO licensed agent, insurance consultation Ontario, life insurance underwriting, policy review services, insurance claims assistance, group life insurance Ontario, individual life insurance plans, seniors life insurance, young family insurance, mortgage protection insurance, final expense insurance, burial insurance Ontario, travel medical insurance, emergency travel coverage, multi-trip travel insurance, annual travel insurance, visitor to Canada insurance, parent sponsor insurance, immigration insurance requirements',
@@ -11,7 +17,6 @@ export const metadata = {
   creator: 'HashLife Insurers',
   publisher: 'HashLife Insurers',
   robots: 'index, follow',
-  viewport: 'width=device-width, initial-scale=1',
   openGraph: {
     type: 'website',
     locale: 'en_CA',
@@ -21,7 +26,7 @@ export const metadata = {
     description: 'Local LLQP certified life insurance agent in Ontario. Compare quotes from multiple providers for life insurance, travel insurance, funeral expense coverage.',
     images: [
       {
-        url: '/app/assets/HashLyf.png',
+        url: '/assets/HashLyf.png',
         width: 1200,
         height: 630,
         alt: 'HashLife Insurers - LLQP Certified Agent Ontario',
@@ -32,7 +37,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'LLQP Certified Insurance Agent Ontario | HashLife Insurers',
     description: 'Local LLQP certified life insurance agent in Ontario. Compare quotes from multiple providers.',
-    images: ['/app/assets/HashLyf.png'],
+    images: ['/assets/HashLyf.png'],
   },
 }
 
