@@ -285,25 +285,31 @@ export default function Chatbot() {
         phone: dataToSubmit.phone?.trim(),
         gender: dataToSubmit.gender?.toLowerCase(),
         smoker: dataToSubmit.smoker === 'Yes',
-        birth_year: parseInt(dataToSubmit.age) ? new Date().getFullYear() - parseInt(dataToSubmit.age) : null,
-        birth_month: null,
-        birth_day: null,
-        coverage_level: dataToSubmit.coverageAmount?.replace(/[^0-9]/g, '') || null,
+        birth_year: parseInt(dataToSubmit.age) ? new Date().getFullYear() - parseInt(dataToSubmit.age) : new Date().getFullYear() - 30,
+        birth_month: 1, // Default to January since chatbot doesn't collect month
+        birth_day: 1,   // Default to 1st since chatbot doesn't collect day
+        coverage_level: dataToSubmit.coverageAmount?.replace(/[^0-9]/g, '') || '250000',
         created_at: new Date().toISOString()
       }
 
-      console.log('Submitting chatbot data with phone:', formData)
+      console.log('Submitting chatbot data with phone:', JSON.stringify(formData, null, 2))
 
       const { data, error } = await supabase
         .from('quote_requests')
         .insert([formData])
 
       if (error) {
-        console.error('Supabase error:', error)
-        console.log('Failed data:', formData)
+        console.error('Supabase error details:', {
+          message: error.message,
+          details: error.details,
+          hint: error.hint,
+          code: error.code
+        })
+        console.log('Failed to insert data:', JSON.stringify(formData, null, 2))
         // Still show success to user even if there's a backend error
       } else {
         console.log('Successfully saved to database:', data)
+        console.log('Inserted record IDs:', data?.map(record => record.id))
       }
 
       showSuccessMessage()
@@ -365,25 +371,31 @@ export default function Chatbot() {
         phone: userData.phone?.trim(),
         gender: userData.gender?.toLowerCase(),
         smoker: userData.smoker === 'Yes',
-        birth_year: parseInt(userData.age) ? new Date().getFullYear() - parseInt(userData.age) : null,
-        birth_month: null,
-        birth_day: null,
-        coverage_level: userData.coverageAmount?.replace(/[^0-9]/g, '') || null,
+        birth_year: parseInt(userData.age) ? new Date().getFullYear() - parseInt(userData.age) : new Date().getFullYear() - 30,
+        birth_month: 1, // Default to January since chatbot doesn't collect month
+        birth_day: 1,   // Default to 1st since chatbot doesn't collect day
+        coverage_level: userData.coverageAmount?.replace(/[^0-9]/g, '') || '250000',
         created_at: new Date().toISOString()
       }
 
-      console.log('Submitting chatbot data:', formData) // Debug log
+      console.log('Submitting chatbot data (fallback):', JSON.stringify(formData, null, 2))
 
       const { data, error } = await supabase
         .from('quote_requests')
         .insert([formData])
 
       if (error) {
-        console.error('Supabase error:', error)
-        console.log('Failed data:', formData)
+        console.error('Supabase error details (fallback):', {
+          message: error.message,
+          details: error.details,
+          hint: error.hint,
+          code: error.code
+        })
+        console.log('Failed to insert data (fallback):', JSON.stringify(formData, null, 2))
         // Still show success to user even if there's a backend error
       } else {
-        console.log('Successfully saved to database:', data)
+        console.log('Successfully saved to database (fallback):', data)
+        console.log('Inserted record IDs (fallback):', data?.map(record => record.id))
       }
 
       showSuccessMessage()
