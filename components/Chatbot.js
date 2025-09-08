@@ -235,9 +235,16 @@ export default function Chatbot() {
             })
           }
         } else if (!userData.phone) {
-          setUserData(prev => ({ ...prev, phone: response }))
+          const updatedData = { ...userData, phone: response }
+          setUserData(updatedData)
+          console.log('Phone captured:', response)
+          console.log('Full user data:', updatedData)
           setCurrentStep(CHAT_STEPS.CONFIRMATION)
-          showSummaryAndSubmit()
+          
+          // Use the updated data directly instead of relying on state
+          setTimeout(() => {
+            submitQuoteRequestWithData(updatedData)
+          }, 1000)
         }
         break
         
@@ -252,25 +259,92 @@ export default function Chatbot() {
   }
 
   const showSummaryAndSubmit = async () => {
-    const currency = getCurrency()
-    const summaryMessage = `Perfect! Here's what I've gathered:
-
-👤 Name: ${userData.firstName} ${userData.lastName}
-📧 Email: ${userData.email}  
-📱 Phone: ${userData.phone}
-🎯 Insurance: ${userData.insuranceType}
-👥 Gender: ${userData.gender}
-🎂 Age: ${userData.age}
-🚭 Smoker: ${userData.smoker}
-💰 Coverage: ${userData.coverageAmount}
-
-I'm now preparing your personalized quote...`
-
-    addBotMessage({ text: summaryMessage })
+    addBotMessage({ text: "Perfect! I'm now preparing your personalized quote..." })
     
     setTimeout(async () => {
       await submitQuoteRequest()
-    }, 2000)
+    }, 1000)
+  }
+
+  const submitQuoteRequestWithData = async (dataToSubmit) => {
+    addBotMessage({ text: "Perfect! I'm now preparing your personalized quote..." })
+    setIsSubmitting(true)
+    
+    try {
+      if (!isSupabaseEnabled()) {
+        console.warn('Supabase not configured, chatbot submission skipped')
+        showSuccessMessage()
+        return
+      }
+
+      // Map chatbot data to the same format as ContactModal
+      const formData = {
+        first_name: dataToSubmit.firstName?.trim(),
+        last_name: dataToSubmit.lastName?.trim(),
+        email: dataToSubmit.email?.trim(),
+        phone: dataToSubmit.phone?.trim(),
+        gender: dataToSubmit.gender?.toLowerCase(),
+        smoker: dataToSubmit.smoker === 'Yes',
+        birth_year: parseInt(dataToSubmit.age) ? new Date().getFullYear() - parseInt(dataToSubmit.age) : null,
+        birth_month: null,
+        birth_day: null,
+        coverage_level: dataToSubmit.coverageAmount?.replace(/[^0-9]/g, '') || null,
+        created_at: new Date().toISOString()
+      }
+
+      console.log('Submitting chatbot data with phone:', formData)
+
+      const { data, error } = await supabase
+        .from('quote_requests')
+        .insert([formData])
+
+      if (error) {
+        console.error('Supabase error:', error)
+        console.log('Failed data:', formData)
+        // Still show success to user even if there's a backend error
+      } else {
+        console.log('Successfully saved to database:', data)
+      }
+
+      showSuccessMessage()
+
+      // Analytics Tracking
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'chatbot_conversion', {
+          event_category: 'Chatbot',
+          event_label: `${dataToSubmit.insuranceType}-${dataToSubmit.age}-${dataToSubmit.smoker}`,
+          custom_parameter_coverage_amount: dataToSubmit.coverageAmount,
+          custom_parameter_geo_location: geoContent?.title,
+          value: 1
+        })
+
+        gtag('event', 'lead_generation', {
+          event_category: 'Marketing',
+          event_label: 'Chatbot Lead',
+          custom_parameter_lead_quality: calculateLeadQualityFromData(dataToSubmit),
+          value: 1
+        })
+      }
+
+      // Hotjar Event Tracking
+      if (typeof window !== 'undefined' && window.hj) {
+        window.hj('event', 'chatbot_conversion')
+        window.hj('identify', dataToSubmit.email, {
+          insurance_type: dataToSubmit.insuranceType,
+          age_group: getAgeGroup(dataToSubmit.age),
+          smoker_status: dataToSubmit.smoker,
+          coverage_range: getCoverageRange(dataToSubmit.coverageAmount),
+          geo_market: geoContent?.title
+        })
+      }
+
+    } catch (error) {
+      console.error('Error submitting chatbot quote:', error)
+      // Always show success message to user regardless of backend errors
+      showSuccessMessage()
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const submitQuoteRequest = async () => {
@@ -285,19 +359,20 @@ I'm now preparing your personalized quote...`
 
       // Map chatbot data to the same format as ContactModal
       const formData = {
-        first_name: userData.firstName,
-        last_name: userData.lastName,
-        email: userData.email,
-        phone: userData.phone,
+        first_name: userData.firstName?.trim(),
+        last_name: userData.lastName?.trim(),
+        email: userData.email?.trim(),
+        phone: userData.phone?.trim(),
         gender: userData.gender?.toLowerCase(),
         smoker: userData.smoker === 'Yes',
         birth_year: parseInt(userData.age) ? new Date().getFullYear() - parseInt(userData.age) : null,
-        birth_month: null, // Chatbot doesn't collect birth month
-        birth_day: null,   // Chatbot doesn't collect birth day
-        coverage_level: userData.coverageAmount?.replace(/[^0-9]/g, '') || null, // Clean coverage amount
-        source: 'chatbot',
+        birth_month: null,
+        birth_day: null,
+        coverage_level: userData.coverageAmount?.replace(/[^0-9]/g, '') || null,
         created_at: new Date().toISOString()
       }
+
+      console.log('Submitting chatbot data:', formData) // Debug log
 
       const { data, error } = await supabase
         .from('quote_requests')
@@ -305,7 +380,10 @@ I'm now preparing your personalized quote...`
 
       if (error) {
         console.error('Supabase error:', error)
+        console.log('Failed data:', formData)
         // Still show success to user even if there's a backend error
+      } else {
+        console.log('Successfully saved to database:', data)
       }
 
       showSuccessMessage()
@@ -351,15 +429,7 @@ I'm now preparing your personalized quote...`
 
   const showSuccessMessage = () => {
     addBotMessage({
-      text: `🎉 Perfect! I've got all your information.
-
-👤 ${userData.firstName} ${userData.lastName}
-📧 ${userData.email}
-📱 ${userData.phone}
-🎯 ${userData.insuranceType}
-👥 ${userData.gender}, Age ${userData.age}
-🚭 ${userData.smoker}
-💰 ${userData.coverageAmount}
+      text: `🎉 Perfect! Your information has been submitted successfully.
 
 Your information has been sent to our LLQP certified team. You'll receive:
 • Personalized quotes within 24 hours
@@ -396,6 +466,18 @@ Thanks ${userData.firstName}! We'll be in touch soon. 📞`,
     if (userData.smoker === 'No' || userData.smoker === 'Former smoker (quit 1+ years ago)') score += 2
     if (userData.coverageAmount && !userData.coverageAmount.includes('Not sure')) score += 2
     if (userData.insuranceType === 'Life Insurance') score += 1
+    
+    if (score >= 6) return 'High'
+    if (score >= 4) return 'Medium'
+    return 'Low'
+  }
+
+  const calculateLeadQualityFromData = (data) => {
+    let score = 0
+    if (data.age && parseInt(data.age) >= 25 && parseInt(data.age) <= 55) score += 3
+    if (data.smoker === 'No' || data.smoker === 'Former smoker (quit 1+ years ago)') score += 2
+    if (data.coverageAmount && !data.coverageAmount.includes('Not sure')) score += 2
+    if (data.insuranceType === 'Life Insurance') score += 1
     
     if (score >= 6) return 'High'
     if (score >= 4) return 'Medium'
