@@ -13,18 +13,12 @@ import ContactModal from '../components/ContactModal'
 import Breadcrumb from '../components/Breadcrumb'
 import GeoOptimizer from '../components/GeoOptimizer'
 import GeoAnalytics from '../components/GeoAnalytics'
+import Chatbot from '../components/Chatbot'
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   
-  // Auto-open modal on page load
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsModalOpen(true)
-    }, 3000) // Open after 3 seconds
-    
-    return () => clearTimeout(timer)
-  }, [])
+  // Remove auto-open modal functionality - replaced with chatbot
 
   const openModal = () => setIsModalOpen(true)
   const closeModal = () => setIsModalOpen(false)
@@ -49,11 +43,7 @@ export default function Home() {
       <FAQ />
       <Testimonials />
       <Footer />
-      <ContactModal 
-        isOpen={isModalOpen} 
-        onClose={closeModal}
-        autoOpen={true}
-      />
+      <Chatbot />
     </main>
   )
 }
