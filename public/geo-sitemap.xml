@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:geo="http://www.google.com/geo/schemas/sitemap/1.0"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- Toronto -->
+  <url>
+    <loc>https://hashlife-insurance.com/?geo=toronto</loc>
+    <geo:geo>
+      <geo:format>kml</geo:format>
+      <geo:location>
+        <geo:lat>43.6532</geo:lat>
+        <geo:lon>-79.3832</geo:lon>
+      </geo:location>
+    </geo:geo>
+    <lastmod>2025-09-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en-ca" href="https://hashlife-insurance.com/?geo=toronto" />
+    <xhtml:link rel="alternate" hreflang="fr-ca" href="https://hashlife-insurance.com/fr?geo=toronto" />
+  </url>
+  
+  <!-- Ottawa -->
+  <url>
+    <loc>https://hashlife-insurance.com/?geo=ottawa</loc>
+    <geo:geo>
+      <geo:format>kml</geo:format>
+      <geo:location>
+        <geo:lat>45.4215</geo:lat>
+        <geo:lon>-75.6972</geo:lon>
+      </geo:location>
+    </geo:geo>
+    <lastmod>2025-09-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en-ca" href="https://hashlife-insurance.com/?geo=ottawa" />
+    <xhtml:link rel="alternate" hreflang="fr-ca" href="https://hashlife-insurance.com/fr?geo=ottawa" />
+  </url>
+  
+  <!-- Hamilton -->
+  <url>
+    <loc>https://hashlife-insurance.com/?geo=hamilton</loc>
+    <geo:geo>
+      <geo:format>kml</geo:format>
+      <geo:location>
+        <geo:lat>43.2557</geo:lat>
+        <geo:lon>-79.8711</geo:lon>
+      </geo:location>
+    </geo:geo>
+    <lastmod>2025-09-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Mississauga -->
+  <url>
+    <loc>https://hashlife-insurance.com/?geo=mississauga</loc>
+    <geo:geo>
+      <geo:format>kml</geo:format>
+      <geo:location>
+        <geo:lat>43.5890</geo:lat>
+        <geo:lon>-79.6441</geo:lon>
+      </geo:location>
+    </geo:geo>
+    <lastmod>2025-09-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- London -->
+  <url>
+    <loc>https://hashlife-insurance.com/?geo=london</loc>
+    <geo:geo>
+      <geo:format>kml</geo:format>
+      <geo:location>
+        <geo:lat>42.9849</geo:lat>
+        <geo:lon>-81.2453</geo:lon>
+      </geo:location>
+    </geo:geo>
+    <lastmod>2025-09-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Windsor -->
+  <url>
+    <loc>https://hashlife-insurance.com/?geo=windsor</loc>
+    <geo:geo>
+      <geo:format>kml</geo:format>
+      <geo:location>
+        <geo:lat>42.3149</geo:lat>
+        <geo:lon>-83.0364</geo:lon>
+      </geo:location>
+    </geo:geo>
+    <lastmod>2025-09-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+</urlset>

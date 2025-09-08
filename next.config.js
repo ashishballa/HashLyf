@@ -5,6 +5,29 @@ const nextConfig = {
     removeConsole: process.env.NODE_ENV === 'production',
   },
   
+  // Internationalization for geo-targeting
+  i18n: {
+    locales: ['en-CA', 'fr-CA', 'en-US'],
+    defaultLocale: 'en-CA',
+    localeDetection: false,
+  },
+  
+  // Dynamic geo-based redirects
+  async redirects() {
+    return [
+      {
+        source: '/us',
+        destination: '/?geo=us',
+        permanent: false,
+      },
+      {
+        source: '/fr',
+        destination: '/?geo=fr',
+        permanent: false,
+      },
+    ]
+  },
+  
   // Image optimization
   images: {
     formats: ['image/webp', 'image/avif'],
@@ -40,7 +63,15 @@ const nextConfig = {
           },
           {
             key: 'Content-Security-Policy',
-            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' fonts.googleapis.com; font-src 'self' fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https:;",
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.googletagmanager.com *.google-analytics.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com; font-src 'self' fonts.gstatic.com; img-src 'self' data: https: *.google-analytics.com; connect-src 'self' https: *.google-analytics.com *.analytics.google.com;",
+          },
+          {
+            key: 'X-Geographic-Region',
+            value: 'CA-ON',
+          },
+          {
+            key: 'X-Robots-Tag',
+            value: 'index, follow, max-snippet:200, max-image-preview:large',
           },
         ],
       },
@@ -56,6 +87,19 @@ const nextConfig = {
   // Experimental features for better performance
   experimental: {
     scrollRestoration: true,
+  },
+  
+  // Performance optimizations for global delivery
+  poweredByHeader: false,
+  generateEtags: true,
+  
+  // Resource optimization
+  optimizeFonts: true,
+  
+  // Cache optimization
+  onDemandEntries: {
+    maxInactiveAge: 60 * 1000,
+    pagesBufferLength: 5,
   },
 }
 

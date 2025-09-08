@@ -3,6 +3,7 @@ Allow: /
 
 # Sitemaps
 Sitemap: https://hashlife-insurance.com/sitemap.xml
+Sitemap: https://hashlife-insurance.com/geo-sitemap.xml
 
 # Optimize crawling
 Crawl-delay: 1

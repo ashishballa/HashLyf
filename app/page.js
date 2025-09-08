@@ -11,6 +11,8 @@ import Contact from '../components/Contact'
 import Footer from '../components/Footer'
 import ContactModal from '../components/ContactModal'
 import Breadcrumb from '../components/Breadcrumb'
+import GeoOptimizer from '../components/GeoOptimizer'
+import GeoAnalytics from '../components/GeoAnalytics'
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -29,6 +31,8 @@ export default function Home() {
 
   return (
     <main className="min-h-screen responsive-width">
+      <GeoOptimizer />
+      <GeoAnalytics />
       <Header openModal={openModal} />
       
       {/* Breadcrumb Navigation */}

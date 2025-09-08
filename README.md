@@ -34,7 +34,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 Run this SQL in your Supabase SQL editor:
 
 ```sql
-CREATE TABLE contact_submissions (
+CREATE TABLE quote_requests (
   id BIGSERIAL PRIMARY KEY,
   name TEXT NOT NULL,
   email TEXT NOT NULL,
@@ -45,12 +45,12 @@ CREATE TABLE contact_submissions (
   status TEXT DEFAULT 'new'
 );
 
-ALTER TABLE contact_submissions ENABLE ROW LEVEL SECURITY;
+ALTER TABLE quote_requests ENABLE ROW LEVEL SECURITY;
 
-CREATE POLICY "Allow public inserts" ON contact_submissions
+CREATE POLICY "Allow public inserts" ON quote_requests
   FOR INSERT WITH CHECK (true);
 
-CREATE POLICY "Allow admin select" ON contact_submissions
+CREATE POLICY "Allow admin select" ON quote_requests
   FOR SELECT USING (true);
 ```
 
@@ -148,7 +148,7 @@ The website includes:
 
 The Supabase database uses the following table structure:
 
-### contact_submissions
+### quote_requests
 - `id` (BIGSERIAL) - Primary key
 - `name` (TEXT) - Contact's full name
 - `email` (TEXT) - Contact's email address

@@ -51,6 +51,28 @@ export default function RootLayout({ children }) {
             __html: JSON.stringify([
               {
                 "@context": "https://schema.org",
+                "@type": "WebSite",
+                "@id": "https://hashlife-insurance.com/#website",
+                "url": "https://hashlife-insurance.com",
+                "name": "HashLife Insurers", 
+                "alternateName": "LLQP Certified Insurance Agent Ontario",
+                "description": "Professional life insurance and travel insurance services across Ontario, Canada",
+                "inLanguage": ["en-CA", "fr-CA"],
+                "potentialAction": {
+                  "@type": "SearchAction",
+                  "target": "https://hashlife-insurance.com/?s={search_term_string}",
+                  "query-input": "required name=search_term_string"
+                },
+                "publisher": {
+                  "@type": "Organization",
+                  "@id": "https://hashlife-insurance.com/#organization"
+                },
+                "mainEntity": {
+                  "@id": "https://hashlife-insurance.com/#business"
+                }
+              },
+              {
+                "@context": "https://schema.org",
                 "@type": "LocalBusiness",
                 "@id": "https://hashlife-insurance.com/#business",
                 "name": "HashLife Insurers",
